@@ -1,0 +1,632 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import ProgramHeader from "../../components/ProgramHeader.astro";
+import ProgramCard from "../../components/ProgramCard.astro";
+import { fetchAllSessions } from "../../utils/paperData";
+import { getProgramEventTypeLabel } from "../../utils/programEventTypeLabel";
+import { typeColors, typeTextColors } from "../../utils/week-of-utils";
+
+const CONFERENCE_TIME_ZONE = "US/Eastern";
+
+type SessionListItem = {
+  id: string;
+  eventSlug: string;
+  title: string;
+  eventTitle: string;
+  eventType: string;
+  eventTypeLabel: string;
+  dayKey: string;
+  room: string;
+  chairs: string[];
+  organizers: string[];
+  startISO: string;
+  endISO: string;
+  startMs: number;
+  searchText: string;
+};
+
+function getDateParts(date: Date, timeZone: string) {
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  const parts = formatter.formatToParts(date);
+  const map = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return {
+    year: map.year,
+    month: map.month,
+    day: map.day,
+  };
+}
+
+function getConferenceDayKey(iso: string) {
+  const date = new Date(iso);
+  const parts = getDateParts(date, CONFERENCE_TIME_ZONE);
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+
+const dayWeekFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: CONFERENCE_TIME_ZONE,
+  weekday: "long",
+});
+
+const dayDateFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: CONFERENCE_TIME_ZONE,
+  month: "short",
+  day: "numeric",
+});
+
+const sessionList = await fetchAllSessions();
+
+const sessions: SessionListItem[] = Object.values(sessionList)
+  .flatMap((eventDefinition) =>
+    eventDefinition.sessions.map((session) => {
+      const eventType = eventDefinition.event_type || "other";
+      const dayKey = getConferenceDayKey(session.time_start);
+      const searchText = [
+        session.title,
+        eventDefinition.long_name,
+        session.room_name,
+        ...(session.chair || []),
+        ...eventDefinition.organizers,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return {
+        id: session.session_id,
+        eventSlug: `${session.event_prefix}-${session.session_id}`,
+        title: `${session.title}`,
+        eventTitle: eventDefinition.long_name,
+        eventType,
+        eventTypeLabel: getProgramEventTypeLabel(eventType),
+        dayKey,
+        room: session.room_name,
+        chairs: session.chair || [],
+        organizers: eventDefinition.organizers,
+        startISO: session.time_start,
+        endISO: session.time_end,
+        startMs: Date.parse(session.time_start),
+        searchText,
+      };
+    }),
+  )
+  .sort((a, b) => a.startMs - b.startMs);
+
+const groupedSessions = new Map<string, SessionListItem[]>();
+
+for (const session of sessions) {
+  const daySessions = groupedSessions.get(session.dayKey) || [];
+  daySessions.push(session);
+  groupedSessions.set(session.dayKey, daySessions);
+}
+
+const dayGroups = Array.from(groupedSessions.entries())
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([dayKey, daySessions]) => {
+    const sortedSessions = daySessions.sort((a, b) => a.startMs - b.startMs);
+    const referenceDate = new Date(daySessions[0].startISO);
+    return {
+      dayKey,
+      weekdayLabel: dayWeekFormatter.format(referenceDate),
+      dateLabel: dayDateFormatter.format(referenceDate),
+      sessions: sortedSessions,
+    };
+  });
+
+const typeCounts = sessions.reduce<Record<string, number>>((acc, session) => {
+  acc[session.eventType] = (acc[session.eventType] || 0) + 1;
+  return acc;
+}, {});
+
+const sortedTypes = Object.keys(typeCounts).sort((a, b) => a.localeCompare(b));
+
+const dayOptions = dayGroups.map((dayGroup) => ({
+  value: dayGroup.dayKey,
+  label: `${dayGroup.weekdayLabel}`,
+  // label: `${dayGroup.weekdayLabel}, ${dayGroup.dateLabel}`,
+}));
+
+const typeOptions = sortedTypes.map((sessionType) => ({
+  value: sessionType,
+  label: getProgramEventTypeLabel(sessionType),
+  count: typeCounts[sessionType],
+  color: typeColors[sessionType] || "#df6824",
+}));
+const conferenceDateTimeFormatter = new Intl.DateTimeFormat("en-US", {
+  timeZone: CONFERENCE_TIME_ZONE,
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
+
+function formatNotesForSession(session: SessionListItem) {
+  const startISO = session.startISO;
+  const scheduleLabel = `${conferenceDateTimeFormatter.format(new Date(startISO))}`;
+
+  const notes = [`Room: ${session.room}`, `Schedule: ${scheduleLabel}`];
+  return notes;
+}
+// Workshops, tutorials, associated events, and contests are run by their
+// organizers, so show those on the card instead of the session chair when the
+// event lists any.
+const organizerCardEventTypes = [
+  "workshop",
+  "tutorial",
+  "associated",
+  "challenge",
+];
+
+function showsOrganizers(session: SessionListItem) {
+  return (
+    organizerCardEventTypes.includes(session.eventType.toLowerCase()) &&
+    session.organizers.length > 0
+  );
+}
+
+function figureOutPersonTypeLabel(session: SessionListItem) {
+  const organizerEvents = ["workshop", "tutorial", "panel"];
+  const usesOrganizers = showsOrganizers(session);
+  let label =
+    usesOrganizers ||
+    organizerEvents.includes(session.eventType.toLowerCase())
+      ? "Organizer"
+      : "Chair";
+  const people = usesOrganizers ? session.organizers : session.chairs;
+  if (people.length > 1) {
+    label += "s";
+  }
+  return label;
+}
+
+function formatPeopleForSession(session: SessionListItem) {
+  const people = showsOrganizers(session) ? session.organizers : session.chairs;
+  return people.map((authorName) => ({
+    name: authorName,
+    href: `/program/papers/?search=${encodeURIComponent(authorName)}`,
+  }));
+}
+---
+
+<PageLayout
+  frontmatter={{
+    title: "All Sessions",
+    active_nav: "Program",
+    contact: "web@ieeevis.org",
+    full_width: true,
+  }}
+>
+  <section
+    class="program-sessions"
+    data-conference-timezone={CONFERENCE_TIME_ZONE}
+    data-local-storage-key="program-sessions-timezone-mode"
+  >
+    <ProgramHeader
+      title="Sessions"
+      subtitleBefore="Grouped by conference days. Times are rendered in"
+      subtitleAfter="."
+      timezoneLabel="Timezone display"
+      timezoneSelectId="timezone-mode"
+      dayLabel="Day view"
+      daySelectId="day-filter"
+      searchLabel="Search sessions"
+      searchInputId="sessions-search"
+      searchPlaceholder="Search title, room, event, chair, organizer"
+      dayOptions={dayOptions}
+      typeOptions={typeOptions}
+      allCount={sessions.length}
+      filterBarLabel="Session type filters"
+    />
+
+    <div class="sessions-day-list">
+      {
+        dayGroups.map((dayGroup) => (
+          <section
+            class="sessions-day"
+            data-day-group-container
+            data-day-group={dayGroup.dayKey}
+          >
+            <header class="sessions-day-header">
+              <h2>{dayGroup.weekdayLabel}</h2>
+              <p>{dayGroup.dateLabel}</p>
+            </header>
+
+            <div
+              class="sessions-day-content"
+              role="list"
+              aria-label={`Sessions for ${dayGroup.weekdayLabel}, ${dayGroup.dateLabel}`}
+            >
+              {dayGroup.sessions.map((session) => (
+                <ProgramCard
+                  role="listitem"
+                  data-program-card
+                  data-type={session.eventType}
+                  data-day-group={dayGroup.dayKey}
+                  data-search={session.searchText}
+                  data-start={session.startISO}
+                  data-end={session.endISO}
+                  accentColor={typeColors[session.eventType] || "#df6824"}
+                  title={session.title}
+                  titleColor={typeTextColors[session.eventType] || "#111827"}
+                  titleHref={`/program/session/${session.eventSlug}`}
+                  eyebrow={session.eventTypeLabel}
+                  peopleLabel={figureOutPersonTypeLabel(session)}
+                  people={formatPeopleForSession(session)}
+                  links={[]}
+                  notes={formatNotesForSession(session)}
+                />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+
+    <p class="sessions-empty-state" data-empty-state hidden>
+      No sessions match your filters.
+    </p>
+  </section>
+
+  <script>
+    import {
+      createUrlStateHistory,
+      type UrlStateWriteOptions,
+    } from "../../utils/urlStateHistory";
+
+    (() => {
+      const root = document.querySelector(".program-sessions");
+      if (!root) return;
+
+      const conferenceTimeZone =
+        root.getAttribute("data-conference-timezone") || "UTC";
+      const localStorageKey =
+        root.getAttribute("data-local-storage-key") ||
+        "program-sessions-timezone-mode";
+      const localTimeZone =
+        Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+
+      const timezoneControl = root.querySelector<HTMLElement>("#timezone-mode");
+      const dayFilterControl = root.querySelector<HTMLElement>("#day-filter");
+      const searchInput = root.querySelector("#sessions-search");
+      const timeRanges = Array.from(
+        root.querySelectorAll<HTMLElement>(".js-time-range"),
+      );
+      const cards = Array.from(
+        root.querySelectorAll<HTMLElement>("[data-program-card]"),
+      );
+      const dayGroups = Array.from(
+        root.querySelectorAll<HTMLElement>("[data-day-group-container]"),
+      );
+      const filterButtons = Array.from(
+        root.querySelectorAll<HTMLButtonElement>("[data-type-filter]"),
+      );
+      const tzDescription =
+        root.querySelector<HTMLElement>(".js-tz-description");
+      const emptyState = root.querySelector<HTMLElement>("[data-empty-state]");
+
+      const ALL_FILTER = "all";
+      let activeTypeFilter = ALL_FILTER;
+
+      const getChoiceValue = (
+        container: HTMLElement | null,
+        fallback: string,
+      ): string => {
+        if (!container) return fallback;
+        const select = container.querySelector<HTMLSelectElement>(
+          "[data-choice-select]",
+        );
+        if (select) return select.value || fallback;
+        const activeButton = container.querySelector<HTMLButtonElement>(
+          ".u-choice-button.is-active[data-choice-value]",
+        );
+        return activeButton?.dataset.choiceValue || fallback;
+      };
+
+      const setChoiceValue = (
+        container: HTMLElement | null,
+        value: string,
+      ): boolean => {
+        if (!container) return false;
+        const buttons = Array.from(
+          container.querySelectorAll<HTMLButtonElement>(
+            ".u-choice-button[data-choice-value]",
+          ),
+        );
+        const select = container.querySelector<HTMLSelectElement>(
+          "[data-choice-select]",
+        );
+        let found = false;
+
+        for (const button of buttons) {
+          const isActive = button.dataset.choiceValue === value;
+          if (isActive) found = true;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        }
+
+        if (
+          select &&
+          Array.from(select.options).some((option) => option.value === value)
+        ) {
+          select.value = value;
+          found = true;
+        }
+
+        return found;
+      };
+
+      const getSearchText = (): string =>
+        searchInput instanceof HTMLInputElement ? searchInput.value.trim() : "";
+
+      const getSearchQuery = (): string => getSearchText().toLowerCase();
+
+      const cardMatchesFilters = (
+        card: HTMLElement,
+        selectedDay: string,
+        query: string,
+      ): boolean => {
+        const type = card.dataset.type || "";
+        const dayKey = card.dataset.dayGroup || "";
+        const search = card.dataset.search || "";
+
+        return (
+          (activeTypeFilter === ALL_FILTER || activeTypeFilter === type) &&
+          (selectedDay === "all" || dayKey === selectedDay) &&
+          (query === "" || search.includes(query))
+        );
+      };
+
+      const isSameDayFormatter = (timeZone: string) =>
+        new Intl.DateTimeFormat("en-CA", {
+          timeZone,
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        });
+
+      const timeFormatter = (timeZone: string) =>
+        new Intl.DateTimeFormat("en-US", {
+          timeZone,
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
+
+      const dateFormatter = (timeZone: string) =>
+        new Intl.DateTimeFormat("en-US", {
+          timeZone,
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+        });
+
+      const compactRange = (
+        startDate: Date,
+        endDate: Date,
+        timeZone: string,
+      ) => {
+        const sameDay =
+          isSameDayFormatter(timeZone).format(startDate) ===
+          isSameDayFormatter(timeZone).format(endDate);
+        if (sameDay) {
+          return `${timeFormatter(timeZone).format(startDate)} - ${timeFormatter(timeZone).format(endDate)}`;
+        }
+        return `${dateFormatter(timeZone).format(startDate)} ${timeFormatter(timeZone).format(startDate)} - ${dateFormatter(timeZone).format(endDate)} ${timeFormatter(timeZone).format(endDate)}`;
+      };
+
+      const getMode = () => getChoiceValue(timezoneControl, "conference");
+
+      const getSelectedDay = () => getChoiceValue(dayFilterControl, "all");
+
+      const formatRangeForMode = (startISO: string, endISO: string) => {
+        const mode = getMode();
+        const startDate = new Date(startISO);
+        const endDate = new Date(endISO);
+        const showConference = mode === "conference" || mode === "both";
+        const showLocal = mode === "local" || mode === "both";
+        const parts: string[] = [];
+
+        if (showConference) {
+          parts.push(compactRange(startDate, endDate, conferenceTimeZone));
+        }
+        if (showLocal) {
+          const localRange = compactRange(startDate, endDate, localTimeZone);
+          parts.push(showConference ? `Local: ${localRange}` : localRange);
+        }
+
+        return parts.join(" | ");
+      };
+
+      const refreshTimeRanges = () => {
+        const mode = getMode();
+
+        for (const node of timeRanges) {
+          const startISO = node.parentElement?.getAttribute("data-start");
+          const endISO = node.parentElement?.getAttribute("data-end");
+          if (!startISO || !endISO) continue;
+          node.textContent = formatRangeForMode(startISO, endISO);
+        }
+
+        if (tzDescription) {
+          if (mode === "conference") {
+            tzDescription.textContent = ` ${conferenceTimeZone} (${conferenceTimeZone}) `;
+          } else if (mode === "local") {
+            tzDescription.textContent = ` your local timezone (${localTimeZone}) `;
+          } else {
+            tzDescription.textContent = ` both ${conferenceTimeZone} and your local timezone (${localTimeZone}) `;
+          }
+        }
+      };
+
+      const refreshFilterButtonState = () => {
+        for (const button of filterButtons) {
+          const isActive = button.dataset.typeFilter === activeTypeFilter;
+          button.setAttribute("aria-pressed", String(isActive));
+          button.classList.toggle("is-active", isActive);
+        }
+      };
+
+      // Keep the filters in the URL so a filtered list can be linked to.
+      const syncUrlParams = (options?: UrlStateWriteOptions) => {
+        const nextParams = new URLSearchParams(window.location.search);
+        const entries: [string, string, string][] = [
+          ["search", getSearchText(), ""],
+          ["type", activeTypeFilter, ALL_FILTER],
+          ["day", getSelectedDay(), "all"],
+        ];
+        for (const [key, value, defaultValue] of entries) {
+          if (value && value !== defaultValue) {
+            nextParams.set(key, value);
+          } else {
+            nextParams.delete(key);
+          }
+        }
+        urlHistory.write(nextParams, options);
+      };
+
+      const applyFilters = (options?: UrlStateWriteOptions) => {
+        const selectedDay = getSelectedDay();
+        const query = getSearchQuery();
+        let visibleCount = 0;
+
+        for (const card of cards) {
+          const visible = cardMatchesFilters(card, selectedDay, query);
+          card.hidden = !visible;
+          if (visible) visibleCount += 1;
+        }
+
+        for (const group of dayGroups) {
+          group.hidden = !group.querySelector(
+            "[data-program-card]:not([hidden])",
+          );
+        }
+
+        if (emptyState) {
+          emptyState.hidden = visibleCount > 0;
+        }
+
+        syncUrlParams(options);
+      };
+
+      for (const button of filterButtons) {
+        button.addEventListener("click", () => {
+          const buttonType = button.dataset.typeFilter;
+          if (!buttonType) return;
+          activeTypeFilter = buttonType;
+          refreshFilterButtonState();
+          applyFilters();
+        });
+      }
+
+      if (searchInput instanceof HTMLInputElement) {
+        searchInput.addEventListener("input", () => {
+          applyFilters({ burst: "search" });
+        });
+      }
+
+      const savedMode = localStorage.getItem(localStorageKey);
+      if (
+        savedMode === "conference" ||
+        savedMode === "local" ||
+        savedMode === "both"
+      ) {
+        setChoiceValue(timezoneControl, savedMode);
+      }
+
+      if (timezoneControl) {
+        const timezoneButtons = Array.from(
+          timezoneControl.querySelectorAll<HTMLButtonElement>(
+            ".u-choice-button[data-choice-value]",
+          ),
+        );
+        for (const button of timezoneButtons) {
+          button.addEventListener("click", () => {
+            const value = button.dataset.choiceValue;
+            if (!value || !setChoiceValue(timezoneControl, value)) return;
+            localStorage.setItem(localStorageKey, value);
+            refreshTimeRanges();
+          });
+        }
+
+        const timezoneSelect =
+          timezoneControl.querySelector<HTMLSelectElement>(
+            "[data-choice-select]",
+          );
+        timezoneSelect?.addEventListener("change", () => {
+          const value = timezoneSelect.value;
+          if (!setChoiceValue(timezoneControl, value)) return;
+          localStorage.setItem(localStorageKey, value);
+          refreshTimeRanges();
+        });
+      }
+
+      if (dayFilterControl) {
+        const dayButtons = Array.from(
+          dayFilterControl.querySelectorAll<HTMLButtonElement>(
+            ".u-choice-button[data-choice-value]",
+          ),
+        );
+        for (const button of dayButtons) {
+          button.addEventListener("click", () => {
+            const value = button.dataset.choiceValue;
+            if (!value || !setChoiceValue(dayFilterControl, value)) return;
+            applyFilters();
+          });
+        }
+
+        const daySelect = dayFilterControl.querySelector<HTMLSelectElement>(
+          "[data-choice-select]",
+        );
+        daySelect?.addEventListener("change", () => {
+          if (!setChoiceValue(dayFilterControl, daySelect.value)) return;
+          applyFilters();
+        });
+      }
+
+      // Restore filters from the URL (?search=...&type=full&day=2026-11-10).
+      const restoreFromUrl = (urlParams: URLSearchParams) => {
+        const urlTypeParam = urlParams.get("type")?.trim().toLowerCase();
+        if (urlTypeParam) {
+          // Accept plurals (?type=workshops). A type with no sessions yet has no
+          // button, but is still applied so the link shows the empty state
+          // rather than silently falling back to every session.
+          const knownTypes = filterButtons.map(
+            (button) => button.dataset.typeFilter,
+          );
+          const singular = urlTypeParam.replace(/s$/, "");
+          activeTypeFilter = knownTypes.includes(urlTypeParam)
+            ? urlTypeParam
+            : knownTypes.includes(singular)
+              ? singular
+              : urlTypeParam;
+        } else {
+          activeTypeFilter = ALL_FILTER;
+        }
+        const urlDayParam = urlParams.get("day") || "all";
+        if (!setChoiceValue(dayFilterControl, urlDayParam)) {
+          setChoiceValue(dayFilterControl, "all");
+        }
+        if (searchInput instanceof HTMLInputElement) {
+          searchInput.value = urlParams.get("search") || "";
+        }
+      };
+
+      const urlHistory = createUrlStateHistory((params) => {
+        restoreFromUrl(params);
+        refreshFilterButtonState();
+        applyFilters();
+      });
+
+      restoreFromUrl(new URLSearchParams(location.search));
+
+      refreshFilterButtonState();
+      refreshTimeRanges();
+      applyFilters({ replace: true });
+    })();
+  </script>
+</PageLayout>

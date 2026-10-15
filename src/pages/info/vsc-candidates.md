@@ -1,7 +1,9 @@
 ---
 title: VSC Candidates - VIS 2026 Elections
+description: "Bios and campaign statements from the candidates standing for election to the IEEE VIS Steering Committee (VSC) in 2026."
 layout: /src/layouts/PageLayout.astro
 contact: elections@ieeevis.org
+active_nav: "Organization & History"
 ---
 
 # 2026 VIS Steering Committee (VSC) Candidates

@@ -1,11 +1,15 @@
 ---
 layout: /src/layouts/PageLayout.astro
 title: "VIS 2026 OC Dinner"
+description: "The IEEE VIS 2026 Organizing Committee Dinner, an invitation-only thank-you for the volunteers who make the conference happen."
+contact: social_events@ieeevis.org
 sidebar: social-events
 active_nav: "Program"
 ---
 
-The VIS **OC Dinner** is intended as a thank-you to the whole VIS organization committee.
+Details TBD.
+
+<!-- The VIS **OC Dinner** is intended as a thank-you to the whole VIS organization committee.
 Therefore, the dinner is by **invitation only**.
 
 ## Location
@@ -32,4 +36,4 @@ Schottengasse 3<br />
 
 The OC dinner will take place:
 
-**Thursday (Nov 6), 7:00pm (CET)**
+**Thursday (Nov 6), 7:00pm (CET)** -->

@@ -1,5 +1,6 @@
 ---
 title: Open Access Preprint Guide and FAQ
+description: "Answers to common IEEE VIS author questions about open access preprints: where to share, which version, and IEEE publication policy."
 layout: /src/layouts/PageLayout.astro
 active_nav: "Contribute"
 sidebar: call-for-participation
@@ -31,7 +32,7 @@ In order to ensure that papers are discoverable and remain accessible long-term,
 
 4. **Reliable** —Research should represent a permanent advancement of knowledge and understanding, so it is important that posted papers are available for perpetuity. The archive must therefore have an explicitly stated plan for long-term reliability ([example](https://help.osf.io/hc/en-us/articles/360019737894-FAQs#what-if-you-run-out-of-funding-what-happens-to-my-data)), or it must deposit all papers in a dedicated "dark archive" such as [Portico](https://www.portico.org/) or [Clockss](https://clockss.org/).
 
-A repository that meets the criteria for long-term reliability and is inline with IEEE policy is [arXiv.org](http://arxiv.org) ([instructions](open-practices-arxiv)). If you would like to use another repository such as an institutional repository, please email an explanation of how it meets the criteria to open_practices@ieeevis.org. A personal website, lab website, or any site that is not immutable and has no explicit plans for long-term availability (e.g. GitHub) does not meet the criteria.
+A repository that meets the criteria for long-term reliability and is inline with IEEE policy is [arXiv.org](http://arxiv.org) ([instructions](/year/2026/info/open-practices/open-practices-arxiv)). If you would like to use another repository such as an institutional repository, please email an explanation of how it meets the criteria to open_practices@ieeevis.org. A personal website, lab website, or any site that is not immutable and has no explicit plans for long-term availability (e.g. GitHub) does not meet the criteria.
 
 ## Sharing the preprint with VIS in the Author Submission Portal
 
@@ -62,7 +63,7 @@ You are encouraged to share your paper on a repository that meets the Open Acces
 [IEEE publication policy](https://www.ieee.org/publications/rights/author-posting-policy.html) allow authors to submit preprints only to IEEE approved third-party repositories or institutional repositories.
 IEEE requires repositories that authors consider submitting their preprints to be on [the list approved by The IEEE Publication Services & Products Board (PSPB)](https://www.ieee.org/publications/rights/third-party-servers.html#list-of-approved-third-party-web-servers). At the moment, **the only IEEE officially-approved third-party repositories are arXiv and TechRxiv.**
 
-Besides [arXiv](https://arxiv.org), several other preprint servers with additional features or different target audiences exist that—like arXiv—create an immutable record. These include [OSF Preprints](https://osf.io/preprints/) (supports file sharing and immutable preregistrations in addition to manuscripts), [bioRxiv](https://www.biorxiv.org) (for biology and bioinformatics-related work), and [medRxiv](https://www.medrxiv.org) (for medically-focused work). A [comprehensive overview of over 40 preprint servers and their features](https://asapbio.org/preprint-servers) is provided by the ASAPbio organization.
+Besides [arXiv](https://arxiv.org), several other preprint servers with additional features or different target audiences exist that—like arXiv—create an immutable record. These include [bioRxiv](https://www.biorxiv.org) (for biology and bioinformatics-related work), and [medRxiv](https://www.medrxiv.org) (for medically-focused work). A [comprehensive overview of over 40 preprint servers and their features](https://asapbio.org/preprint-servers) is provided by the ASAPbio organization. Starting August 2025, [OSF Preprints](https://osf.io/preprints/) no longer accepts new submissions to their general-purpose preprint server. It still has options for supplemental material and study pregistrations.
 
 We are working with IEEE to expand the list of approved repositories in the future. If you have recommendations for 3rd party servers to be considered by IEEE, you can either contact the Open Practices chairs or submit a request to [IEEE directly here](https://www.ieee.org/publications/rights/third-party-servers.html).
 
@@ -70,7 +71,7 @@ To sum up, you are encouraged to share your paper either on [arXiv.org](http://a
 
 ## Which version of the paper can I share?
 
-Share the final preprint version of your accepted article that you create after all rounds of review because it is the most scrutinized and polished. Please do not share the version created by IEEE, which typically has page numbers. If you are using `LaTeX` to produce your paper, indicating the `preprint` option on your main `TeX` file will ensure that you produce a version that is compliant with IEEE's regulations. For submitting to arXiv, you can follow the guidance [here](open-practices-arxiv).
+Share the final preprint version of your accepted article that you create after all rounds of review because it is the most scrutinized and polished. Please do not share the version created by IEEE, which typically has page numbers. If you are using `LaTeX` to produce your paper, indicating the `preprint` option on your main `TeX` file will ensure that you produce a version that is compliant with IEEE's regulations. For submitting to arXiv, you can follow the guidance [here](/year/2026/info/open-practices/open-practices-arxiv).
 
 **After you receive the DOI from IEEE**, you must either add the DOI to the repository to add a link to the IEEEXplore page or include that information directly on the pdf. Depending on how you produced your document and requirements of the repository (for instance, arXiV requires TeX files to be submitted), you have two options:
 
@@ -83,7 +84,7 @@ Share the final preprint version of your accepted article that you create after 
 
 Make sure that the revised version has: i) the copyright statement on the bottom-left on the first page and ii) a statement with a link to the paper on IEEEXplore on the first page (or on top of odd-numbered pages). Once everything is in place, resubmit the revised preprint to the OA repository to replace the version you submitted earlier.
 
-If you have uploaded your preprint to arXiv, you can follow the [guidance on this page](open-practices-arxiv) under the "**5.Update arXiv record post publication**" step for revising your record on arXiv.
+If you have uploaded your preprint to arXiv, you can follow the [guidance on this page](/year/2026/info/open-practices/open-practices-arxiv) under the "**5.Update arXiv record post publication**" step for revising your record on arXiv.
 
 ## Can I put my paper on my personal/institutional webpage?
 
@@ -93,7 +94,7 @@ You are free to share a preprint of your paper on your personal or institutional
 
 [Plan-S](https://www.coalition-s.org/) is a European policy requiring publicly funded research publications to be open access (available for free). However, it only relates to open access of papers via the publisher, not preprints or other open practices such as open materials, open data, or preregistration. It can, however, impact which publisher you choose.
 
-Please see our blog post on [Publishing papers covered under Plan S](../../blog/plublishing-under-plan-s) for details.
+Please see our blog post on [Publishing papers covered under Plan S](https://ieeevis.org/year/2024/blog/plublishing-under-plan-s) for details.
 
 ## What if I have questions, comments, concerns?
 

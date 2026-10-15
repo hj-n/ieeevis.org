@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @import "./theme.css";
 @import "./typography";
+@import "./interactions";
 
 /* Components */
 @import "./layout";
@@ -23,6 +24,8 @@
 @import "./blog";
 
 @import "./city-info";
+
+@import "./week-of";
 
 /* Utilities*/
 /* @import "tailwindcss/utilities"; */

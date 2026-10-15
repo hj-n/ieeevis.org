@@ -1,11 +1,15 @@
 ---
 layout: /src/layouts/PageLayout.astro
 title: "VIS Arts Program"
+description: "The VIS Arts Program (VISAP) exhibition at IEEE VIS, showcasing work at the intersection of art and data visualization."
+contact: art@ieeevis.org
 sidebar: social-events
 active_nav: "Program"
 ---
 
-The VIS 2026 **Vis Arts Program** exhibition will take place outside the convention center.
+Details TBD.
+
+<!-- The VIS 2026 **Vis Arts Program** exhibition will take place outside the convention center.
 
 ## Location
 
@@ -23,4 +27,4 @@ Vordere Zollamtsstraße 7<br />
 
 The Vis Arts exhibition will start with a reception:
 
-**Thursday (Nov 6), 6:00pm - 9:00pm (CET)**
+**Thursday (Nov 6), 6:00pm - 9:00pm (CET)** -->

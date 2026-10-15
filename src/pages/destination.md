@@ -1,8 +1,9 @@
 ---
 title: Destination
+description: "Learn more about the host city for IEEE VIS, and how to get there by plane, train, bus, or car."
 layout: /src/layouts/PageLayout.astro
-active_nav: Destination
-contact:
+active_nav: Attend
+contact: general_chair@ieeevis.org
 ---
 
 # Boston, Massachusetts, USA

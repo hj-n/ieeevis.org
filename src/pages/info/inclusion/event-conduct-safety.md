@@ -1,6 +1,9 @@
 ---
 title: IEEE Event Conduct and Safety Statement
+description: "The IEEE Event Conduct and Safety Statement, describing expectations for respectful behavior and how to report concerns at IEEE events."
+contact: ombuds@ieeevis.org
 layout: /src/layouts/PageLayout.astro
+active_nav: Attend
 ---
 
 IEEE believes that science, technology, and engineering are fundamental human activities, for which openness, international collaboration, and the free flow of talent and ideas are essential. Its meetings, conferences, and other events seek to enable engaging, thought provoking conversations that support IEEE’s core mission of advancing technology for humanity. Accordingly, IEEE is committed to providing a safe, productive, and welcoming environment to all participants, including staff and vendors, at IEEE-related events.

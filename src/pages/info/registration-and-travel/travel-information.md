@@ -1,11 +1,14 @@
 ---
 title: Travel Information
+description: "Travel information for IEEE VIS 2026 attendees, including how to reach the conference city and climate-friendly travel options."
 layout: /src/layouts/PageLayout.astro
 active_nav: "Attend"
 contact: general_chair@ieeevis.org
 ---
 
-Some more information on how to travel to the conference.
+Details TBD.
+
+<!-- Some more information on how to travel to the conference.
 
 # Vienna, Austria
 
@@ -47,4 +50,4 @@ Because flying is among the most carbon-intensive activities an individual can u
 
 <p>
   <img src="/year/2026/assets/venue-and-travel/travel-information-plane.png" />
-</p>
+</p> -->

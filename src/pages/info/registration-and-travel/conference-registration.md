@@ -1,211 +1,101 @@
 ---
 title: Conference Registration
+description: "Register for IEEE VIS the premier conference in visualization."
 layout: /src/layouts/PageLayout.astro
 active_nav: "Attend"
 contact: finance@ieeevis.org
 ---
 
-## VIS 2026 EVENT REGISTRATION
+## IEEE VIS 2026 Registration
 
-The 2026 IEEE Visualization and Visual Analytics Conference, running from November 2 - 7, is organized as an on-site event.
-The conference will be held at the Austria Center Vienna (ACV) in Vienna, Austria.
-There will be a completely virtual session (organized in Zoom) for presenters who are not able to travel.
+We are excited to have you to join us at the 2026 IEEE Visualization and Visual Analytics Conference, November 9 - 13.
+The main conference will take place at The Westin Copley Place in Boston, MA, USA.
+Satellite locations will also host in-person programs at Paris, France and Tianjin, China. See the [Satellite Locations](https://ieeevis.org/year/2026/satellites/) page for more details.
 
-<a class="button" href="https://cvent.me/YkREVy" target="_blank"> LINK TO REGISTRATION </a>
+After reviewing the sections below, please use the registration button below **for the location you will attend** to complete registration for IEEE VIS 2026.
 
-### Important Dates
+<a class="button" href="https://web.cvent.com/event/bfb61584-aa1d-46ed-9a2e-98101b7b86e4/summary" target="_blank">BOSTON REGISTRATION</a>
+<a class="button" href="https://web.cvent.com/event/0e18a99d-6d50-4799-995e-c6d504f2166f" target="_blank">PARIS REGISTRATION</a>
+<a class="button" href="https://ieeevis2026.scimeeting.cn/" target="_blank">TIANJIN REGISTRATION</a>
 
-<ul>
-<li>Early bird registration deadline: <strong>September 21, 2026</strong></li>
-</ul>
+### Registration Process
 
-<!-- ---------------------------------------------------------------------------------- -->
+1. Click the registration button above **for the location you will attend**.
+2. Follow the prompts to select the appropriate registration type and answer registration-related questions.
+   - **Remember that presenters of full papers, short papers, invited TVCG papers, and invited CG&A papers must be covered by a Full Conference registration if attending Boston or an Author registration if attending a satellite location. You also must provide information as an author.** More details on this below.
+   - VAT for satellite registrations will be included as necessary depending on the location you are attending and the selected registration item.
+3. Complete your payment for your selected registration.
+   - A confirmation email and visa letter will be sent to you automatically. See [our visa page](/year/2026/info/registration-and-travel/visas/) for more information.
+4. Join us at one of our locations!
 
-## IN-PERSON AND VIRTUAL PRESENTERS OF MAIN CONFERENCE PAPERS, MAIN CONFERENCE SHORT PAPERS AND INVITED JOURNAL PAPERS
+Please keep in mind that there will be no in-person registrations available at the satellite locations. In-person registrations will be permitted in Boston.
 
-<ul>
-<li>One speaker for each main conference paper, main conference short paper, or invited journal paper <b>MUST</b> register under the On-site Speaker Conference Registration or the Virtual Speaker Conference Registration option (Student Speaker options will be available).</li>
-<li>Presenters can add one additional paper to their Speaker Conference Registration (i.e., a maximum of 2 papers per Speaker Conference Registration).</li>
-<li>Speaker Conference Registration includes admission to all conference sessions, symposia, tutorials and workshops, welcome reception (Tuesday), conference dinner (Wednesday), and access to VIS 2026 online content.</li>
-<li>Presenters participating at symposia, workshops, tutorials, or panels <b>SHOULD NOT</b> select the Speaker Conference Registration category. Instead, they need to use the On-site Conference Registration category.</li>
-</ul>
+### Authors and Presenters of Full Papers, Short Papers, Invited TVCG Papers, and Invited CG&A Papers
 
-### Speaker Conference Registration Fees
+Each VIS Full Paper, VIS Short Paper, or invited TVCG/CG&A journal presentation MUST be covered by a Full Conference registration if attending in Boston or by an Author registration if attending at a satellite location (Paris/Tianjin). During the registration process, they must provide which location the paper will be presented in-person as well as the paper type, ID, and title.
 
-We need to charge 20% VAT on the registration fees.
+Student authors/presenters may only cover one (1) paper on their Full Conference or Author registration. Other authors/presenters may cover up to two (2) papers on their Full Conference or Author registration.
 
-<table>
-<tr>
-    <th>Category</th>
-    <th style="width: 28%">Early Reg fee USD<br />(Ends Sept 21)</th>
-    <th style="width: 28%">Late Reg fee USD </th>
-</tr>
-<tr>
-    <td>On-site Speaker Conference Registration</td>
-    <td><s>$945 ($1,134 incl. VAT)</s></td>
-    <td>$945 ($1,134 incl. VAT)</td>
-</tr>
-<tr>
-    <td>On-site Student Speaker Conference Registration</td>
-    <td><s>$520 ($624 incl. VAT)</s></td>
-    <td>$520 ($624 incl. VAT)</td>
-</tr>
-<tr>
-    <td>Virtual Speaker Conference Registration</td>
-    <td><s>$945 ($1,134 incl. VAT)</s></td>
-    <td>$945 ($1,134 incl. VAT)</td>
-</tr>
-<tr>
-    <td>Virtual Student Speaker Conference Registration</td>
-    <td><s>$520 ($624 incl. VAT)</s></td>
-    <td>$520 ($624 incl. VAT)</td>
-</tr>
-</table>
+Papers presented at symposia, workshops, tutorials, panels, challenges, or other conference proceedings do **NOT** require someone to complete a Full Conference or Author registration. Similarly, poster presenters, invited speakers, or other presenters or organizers do **NOT** require someone to complete a Full Conference or Author registration.
 
-**All Speaker Conference Registration fees are not refundable.**
+### Conference Registration Fees
 
-<!-- ---------------------------------------------------------------------------------- -->
+We recommend all attendees, authors/presenters, and organizers register online in advance and pay via credit card or wire transfer. Note that wire transfers will include a separate fee (please add it under the "Additional Items" on the "Registration Items" page).
 
-## ATTENDEES
+**Note that registrations at our satellite locations will have limited capacity.**
 
-Attendees should register online in advance and pay via credit card or wire transfer.
+#### Early Bird Registration (until September 25, 2026, AOE for Boston and Paris; Oct 8, 2026 20:00 China Standard Time / Beijing Time)
 
-<ul>
-  <li><b>Full Week Conference Registration Includes:</b> Admission to all conference sessions, symposia, tutorials and workshops, welcome reception (Tuesday), conference dinner (Wednesday), and access to VIS 2026 online content.</li>
-  <li><b>One Day Conference Registration Includes:</b> One day admission to any conference sessions, symposia, tutorials, and workshops for that day, and access to VIS 2026 online content.</li>
-  <li><b>Two Day Conference Registration Includes:</b> Two day admission to any conference sessions, symposia, tutorials, and workshops for those days and access to VIS 2026 online content.</li>
-</ul>
-IEEE VIS provides discounted registration rates for students and IEEE Members.
+| Registrant Type     | Full Conference - Boston | Satellite Author - Paris/Tianjin | Satellite Attendee - Paris/Tianjin | Two Day - Boston | One Day - Boston |
+| ------------------- | ------------------------ | -------------------------------- | ---------------------------------- | ---------------- | ---------------- |
+| IEEE Member         | $899                     | $899 + VAT                       | $399 + VAT                         | $369             | $289             |
+| Non-Member          | $1,099                   | $1,099 + VAT                     | $499 + VAT                         | $449             | $349             |
+| IEEE Student Member | $499                     | $499 + VAT                       | $299 + VAT                         | $249             | $199             |
+| Student Non-Member  | $599                     | $599 + VAT                       | $399 + VAT                         | $299             | $239             |
+| IEEE Life Member    | $499                     | $499 + VAT                       |                                    |                  |                  |
 
-### Participant Registration Fees
+Anyone choosing to [stay at the conference hotel in Boston](/year/2026/info/registration-and-travel/hotel-information/) is eligible for Early Bird registration rates, provided you book your hotel by Oct. 23. These rates can be applied retroactively if you have already registered.  [More info on this Google form](https://forms.gle/xqmKZRasccN4tZWK8).
 
-We need to charge 20% VAT on the registration fees.
+#### Late Registration (from September 26, 2026)
 
-<table>
-  <tr>
-    <th></th>
-    <th colspan=2 style="text-align:center; border-right: 1px dashed #a46314;">Single Day</th>
-    <th colspan=2 style="text-align:center; border-right: 1px dashed #a46314;">Two Day</th>
-    <th colspan=2 style="text-align:center">Full Week</th>
-  </tr>
-  <tr>
-    <th>Category</th>
-    <th>Early Reg fee USD<br>(Ends: Sept 21)</th>
-    <th style="border-right: 1px dashed #a46314;">Late Reg fee USD</th>
-    <th>Early Reg fee USD<br>(Ends: Sept 21)</th>
-    <th style="border-right: 1px dashed #a46314;">Late Reg fee USD</th>
-    <th>Early Reg fee USD<br>(Ends: Sept 21)</th>
-    <th>Late Reg fee USD</th>
-  </tr>
-<tr>
-    <td>IEEE Member</td>
-    <td><s>$210 ($252 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$250 ($300 incl. VAT)</td>
-    <td><s>$420 ($504 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$500 ($600 incl. VAT)</td>
-    <td><s>$840 ($1,008 incl. VAT)</s></td>
-    <td>$1010 ($1,212 incl. VAT)</td>
-</tr>
-<tr>
-    <td>Non-Member</td>
-    <td><s>$265 ($318 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$320 ($384 incl. VAT)</td>
-    <td><s>$530 ($636 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$635 ($762 incl. VAT)</td>
-    <td><s>$1,050 ($1,260 incl. VAT)</s></td>
-    <td>$1,260 ($1,512 incl. VAT)</td>
-</tr>
-<tr>
-    <td>Student IEEE Member</td>
-    <td><s>$115 ($138 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$140 ($168 incl. VAT)</td>
-    <td><s>$230 ($276 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$275 ($330 incl. VAT)</td>
-    <td><s>$460 ($552 incl. VAT)</s></td>
-    <td>$550 ($660 incl. VAT)</td>
-</tr>
-<tr>
-    <td>Student Non-Member</td>
-    <td><s>$145 ($174 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$175 ($210 incl. VAT)</td>
-    <td><s>$290 ($348 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$350 ($420 incl. VAT)</td>
-    <td><s>$580 ($696 incl. VAT)</s></td>
-    <td>$695 ($834 incl. VAT)</td>
-</tr>
-<tr>
-    <td>Life IEEE Member</td>
-    <td><s>$115 ($138 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$140 ($168 incl. VAT)</td>
-    <td><s>$230 ($276 incl. VAT)</s></td>
-    <td style="border-right: 1px dashed #a46314;">$275 ($330 incl. VAT)</td>
-    <td><s>$460 ($552 incl. VAT)</s></td>
-    <td>$550 ($660 incl. VAT)</td>
-</tr>
-</table>
+| Registrant Type     | Full Conference - Boston | Satellite Author - Paris/Tianjin | Satellite Attendee - Paris/Tianjin | Two Day - Boston | One Day - Boston |
+| ------------------- | ------------------------ | -------------------------------- | ---------------------------------- | ---------------- | ---------------- |
+| IEEE Member         | $1,099                   | $1,099 + VAT                     | $499 + VAT                         | $449             | $349             |
+| Non-Member          | $1,319                   | $1,319 + VAT                     | $599 + VAT                         | $539             | $419             |
+| IEEE Student Member | $599                     | $599 + VAT                       | $359 + VAT                         | $299             | $239             |
+| Student Non-Member  | $719                     | $719 + VAT                       | $479 + VAT                         | $359             | $289             |
+| IEEE Life Member    | $599                     | $599 + VAT                       |                                    |                  |                  |
 
-**Registration fees are refundable up to 30 days before the beginning of the conference.**
+**All registrations include admission to sessions and events for the chosen days and location of attendance. Access to virtual content is also provided.**
+
+If attending on Wednesday in Boston (November 11), all registration categories include admission for one person to [CLUSTER: The Practitioner's Summit](https://cluster-practitioners-summit.github.io/) and admission for one person to the conference banquet. The banquet will be hosted Wednesday night at the [MIT museum](https://mitmuseum.mit.edu/). Additional banquet tickets may be purchased through the registration site.
+
+**Remember that each paper presented during the main conference proceedings MUST have at least one person complete a Full Conference or Author registration.** See above for details.
+
+#### Cancelation Policy
+
+**Registration fees are refundable up to 30 days before the beginning of the conference.** Refunds for Tianjin registrations require a $50 administrative fee.
 
 ### Diversity and Inclusivity Participants
 
-<ul>
-<li>We will offer free virtual registration to individuals residing in countries where the per capita Gross National Income (GNI) is US$15,000 or less.  If you qualify, select the Diversity Admission option. <a href="https://www.ieee.org/membership/join/emember-countries.html">See list here</a>.</li>
-<li>Individuals who need financial assistance but reside in a country not included on the Diversity Admission list, can select the Inclusivity Admission option for a free virtual registration.</li>
-</ul>
+We will offer free registration to individuals who need financial assistance. Please see our page on [Inclusivity Scholarships](https://ieeevis.org/year/2026/info/inclusion/scholarship/) for more details.
 
 ### Registration FAQS
 
-**Q: I am presenting a TVCG or CG&A invited paper.**
+**Q: I am presenting an invited TVCG or CG&A paper. Do I need to complete a Full Conference or Author registration?**
 
-<ul>
-Speakers for invited papers should use the On-Site Speaker Registration category.
-</ul>
+Maybe. If there is a co-author who has completed a Full Conference or Author registration and provided information for your paper during their registration process, you do not need to complete an additional Full Conference or Author registration yourself. In this case, you may choose a complete a different registration if you wish. Please coordinate with your co-authors to decide who will complete a Full Conference or Author registration and provide the required paper-related information. Authors/Presenters for whom their papers do not have a corresponding Full Conference or Author registration will be contacted by a member of the conference organizing commitee to arrange the appropriate registration and to collect the required paper-related information.
 
-**Q: I am a poster presenter. Do I need to register using the Speaker Registration category?**
+**Q: I am a poster presenter. Do I need to complete a Full Conference or Author registration?**
 
-<ul>
-No. Posters presenters should use the regular On-Site Participant Registration category. 
-</ul>
+No. Posters presenters may select whichever registration best suits their schedule.
 
-**Q: I will present a paper at a workshop. Do I need to register using the Speaker Registration category?**
+**Q: I will present a paper at a workshop. Do I need to complete a Full Conference or Author regisration?**
 
-<ul>
-No. Workshop or symposium paper presenters and authors should use the regular On-Site Participant Registration categories. 
-</ul>
+No. Workshop or symposium paper presenters and authors may select whichever registration best suits their schedule.
 
-**Q: If I complete a Speaker Registration, do I also need to separately complete an On-Site or Virtual Participant Registration to attend the conference?**
+**Q: I am an organizer for a workshop, tutorial, panel, challenge, or symposium. Do I need to complete a Full Conference or Author registration?**
 
-<ul>
-No. Speaker Registration includes the benefits of an on-site or virtual participation, and thus completing it will enable attendance in your preferred mode.
-</ul>
+No. Organizers may select whichever registration best suits their schedule.
 
-If you have additional clarification questions, please contact <a href="mailto:registration@ieeevis.org"> registration@ieeevis.org</a>
-
-<!-- ---------------------------------------------------------------------------------- -->
-
-## ACCESS TO 2026 ONLINE CONTENT
-
-Individuals <b>not registered as in-person conference participants or virtual speakers</b> can purchase access to the online content.
-<b>Online content access includes:</b> Access to online content (i.e., presentation recordings), including downloadable proceedings.
-
-<table>
-<tr>
-    <th>Category</th>
-    <th style="width: 28%">Early Reg fee USD<br />(Ends Sept 21)</th>
-    <th style="width: 28%">Late Reg fee USD </th>
-</tr>
-<tr>
-    <td>Access to Online Content</td>
-    <td><s>$20</s></td>
-    <td>$20</td>
-</tr>
-<tr>
-    <td>Access to Online Content - Diversity/Inclusivity Participant</td>
-    <td><s>Free</s></td>
-    <td>Free</td>
-</tr>
-</table>
-
-<a class="button" href="https://www.eventbrite.com/e/2026-ieee-vis-access-to-online-content-tickets-1461995049549" target="_blank"> ACCESS TO ONLINE CONTENT </a>
-
-**Access to online content registration fees are not refundable.**
+If you have additional questions, please contact [registration@ieeevis.org](mailto:registration@ieeevis.org).

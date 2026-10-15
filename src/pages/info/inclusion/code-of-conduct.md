@@ -1,5 +1,6 @@
 ---
 title: IEEE VIS Code of Conduct
+description: "The IEEE VIS Code of Conduct, setting expectations for an inclusive, harassment-free environment across all conference events and platforms."
 layout: /src/layouts/PageLayout.astro
 active_nav: "Contribute"
 contact: inclusivity@ieeevis.org
@@ -21,7 +22,7 @@ IEEE VIS reserves the right to take appropriate action to foster an inclusive an
 
 ### Contact
 
-Please contact [ombuds@ieeevis.org](mailto:ombuds@ieeevis.org) if you experience, observe, or have knowledge of behavior in violation of the Code of Conduct. Our [reporting process document](coc-reporting-process) describes how the Ombuds team will respond.
+Please contact [ombuds@ieeevis.org](mailto:ombuds@ieeevis.org) if you experience, observe, or have knowledge of behavior in violation of the Code of Conduct. Our [reporting process document](../coc-reporting-process) describes how the Ombuds team will respond.
 
 The ombuds team for VIS 2026 is:
 
@@ -29,24 +30,24 @@ The ombuds team for VIS 2026 is:
 <table style="text-align: center;">
   <tbody>
     <tr style="border-bottom: 0px;">
-      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/alfie.jpeg" alt="ombud alfie" style="min-width: 100px"/></td>
-      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/jordan.jpeg" alt="ombud jordan" style="min-width: 100px"/></td>
-      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/menna.jpeg" alt="ombud menna" style="min-width: 100px"/></td>
+      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/theisel.jpeg" alt="ombud Theisel" style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: top center;"/></td>
+      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/meyer.jpeg" alt="ombud Meyer" style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: top center;"/></td>
+      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/wall.jpg" alt="ombud Wall" style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: top center;"/></td>
     </tr>
     <tr>
-      <td style="padding: 3px; width: 33%;">Alfie Abdul-Rahman</td>
-      <td style="padding: 3px; width: 33%;">R. Jordan Crouser</td>
-      <td style="padding: 3px; width: 33%;">Menna El-Assady</td>
+      <td style="padding: 3px; width: 33%;">Holger Theisel</td>
+      <td style="padding: 3px; width: 33%;">Miriah Meyer</td>
+      <td style="padding: 3px; width: 33%;">Emily Wall</td>
     </tr>
     <tr style="border-bottom: 0px;">
-      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/josh.jpeg" alt="ombud josh" style="min-width: 100px"/></td>
-      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/lace.jpeg" alt="ombud lace" style="min-width: 100px"/></td>
-      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/katerina.jpeg" alt="ombud katerina" style="min-width: 100px"/></td>
+      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/ottley.jpg" alt="ombud Ottley" style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: top center;"/></td>
+      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/bezerianos.jpeg" alt="ombud Bezerianos" style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: top center;"/></td>
+      <td style="padding: 3px; width: 33%;"><img src="/year/2026/assets/ombuds/zhang.jpeg" alt="ombud Zhang" style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: top center;"/></td>
     </tr>
     <tr>
-      <td style="padding: 3px; width: 33%;">Joshua Levine</td>
-      <td style="padding: 3px; width: 33%;">Lace Padilla</td>
-      <td style="padding: 3px; width: 33%;">Katerina Vrotsou</td>
+      <td style="padding: 3px; width: 33%;">Alvitta Ottley</td>
+      <td style="padding: 3px; width: 33%;">Anastasia Bezerianos</td>
+      <td style="padding: 3px; width: 33%;">Jiawan Zhang</td>
     </tr>
   </tbody>
 </table>
@@ -55,3 +56,27 @@ The ombuds team for VIS 2026 is:
 You can also approach individual members of the Ombuds team individually (contact information will be available at Registration) or in person.
 
 Please contact [inclusivity@ieeevis.org](mailto:inclusivity@ieeevis.org) with any additional questions about the Code of Conduct and Inclusivity & Diversity at IEEE VIS.
+
+You can also report conduct issues directly the IEEE CS Committee to Assist in Reporting Ethics & Conduct Violations (CS Assist) or the IEEE Ethics Reporting Line.
+
+<img src="/year/2026/assets/ombuds/ieee-coc-assist.gif" alt="QR code for IEEE assist site" style="width: 100%; max-width: 200px; aspect-ratio: 1 / 1; object-fit: cover; object-position: top center;"/>
+
+**CS Assist committee**: assist@computer.org  
+**IEEE Ethics Reporting Line**: www.ieee-ethics-reporting.org  
++1.888.359.6323
+
+### IEEE Computer Society Open Conference Statement
+
+Equity, Diversity, and Inclusion are central to the goals of the IEEE Computer Society and all of its conferences. Equity at its heart is about removing barriers, biases, and obstacles that impede equal access and opportunity to succeed. Diversity is fundamentally about valuing human differences and recognizing diverse talents. Inclusion is the active engagement of Diversity and Equity.
+
+A goal of the IEEE Computer Society is to foster an environment in which all individuals are entitled to participate in any IEEE Computer Society activity free of discrimination. For this reason, the IEEE Computer Society is firmly committed to team compositions in all sponsored activities, including but not limited to, technical committees, steering committees, conference organizations, standards committees, and ad hoc committees that display Equity, Diversity, and Inclusion.
+
+IEEE Computer Society meetings, conferences and workshops must provide a welcoming, open and safe environment, that embraces the value of every person, regardless of race, color, sex, sexual orientation, gender identity or expression, age, marital status, religion, national origin, ancestry, or disability. All individuals are entitled to participate in any IEEE Computer Society activity free of discrimination, including harassment based on any of the above factors.
+
+### IEEE Event Conduct and Safety Statement
+
+IEEE believes that science, technology, and engineering are fundamental human activities, for which openness, international collaboration, and the free flow of talent and ideas are essential. Its meetings, conferences, and other events seek to enable engaging, thought provoking conversations that support IEEE’s core mission of advancing technology for humanity. Accordingly, IEEE is committed to providing a safe, productive, and welcoming environment to all participants, including staff and vendors, at IEEE-related events.
+
+IEEE has no tolerance for discrimination, harassment, or bullying in any form at IEEE-related events. All participants have the right to pursue shared interests without harassment or discrimination in an environment that supports diversity and inclusion. Participants are expected to adhere to these principles and respect the rights of others.
+
+IEEE seeks to provide a secure environment at its events. Participants should report any behavior inconsistent with the principles outlined here, to on site staff, security or venue personnel, or to ombuds@ieeevis.org.

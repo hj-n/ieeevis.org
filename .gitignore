@@ -24,3 +24,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+.link-checker/
+
+# Local Netlify folder
+.netlify
+
+src/data/program/

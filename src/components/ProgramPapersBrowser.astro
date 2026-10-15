@@ -1,0 +1,815 @@
+---
+import ProgramHeader from "./ProgramHeader.astro";
+import ProgramCard from "./ProgramCard.astro";
+import { getProgramEventTypeLabel } from "../utils/programEventTypeLabel";
+import type { ProgramPapersBrowserProps } from "../types/programPaper";
+import { typeColors, typeTextColors } from "../utils/week-of-utils";
+
+const paperTypeToNameMap: Record<string, string> = {
+  full: "Full VIS Paper",
+  short: "VIS Short Paper",
+  "cg&a": "CG&A Paper",
+  poster: "Poster",
+  demo: "Demo",
+  "computer graphics & applications": "CG&A Paper",
+};
+
+const normalizePaperType = (value: string) => value.trim().toLowerCase();
+const getPaperType = (paper: ProgramPapersBrowserProps["papers"][number]) =>
+  normalizePaperType(paper.presentationType || paper.presentationLabel);
+
+const {
+  papers,
+  sessionRoles = [],
+  storageKeyPrefix = "program-papers",
+  itemType,
+} = Astro.props as ProgramPapersBrowserProps;
+
+const bookmarkKey = `${storageKeyPrefix}-bookmarks`;
+const lowerItemType = itemType.toLowerCase();
+const collectionPath = `/program/${lowerItemType}s/`;
+
+const typeCounts = papers.reduce<Record<string, number>>((acc, paper) => {
+  const type = getPaperType(paper);
+  acc[type] = (acc[type] || 0) + 1;
+  return acc;
+}, {});
+
+// TVCG papers overlap with the other types, so they get their own pill
+// (appended last) instead of being counted as a type.
+const tvcgCount = papers.filter((paper) => paper.isTvcg).length;
+
+// Award-winning papers (plus the awards plenary) also overlap with the other
+// types, so they get a pill of their own.
+const awardCount = papers.filter(
+  (paper) => paper.award || paper.isAwardSession,
+).length;
+
+// Session chairs and organizers ride along as their own "type" so they can be
+// toggled like the paper types.
+const sessionRoleType = "session-role";
+const sessionRoleColor = "#e6e7e4";
+const sessionRoleTextColor = "#212121";
+
+const typeOptions = Object.keys(typeCounts)
+  .filter((value) => value !== "tvcg")
+  .sort((a, b) => a.localeCompare(b))
+  .map((value) => ({
+    value,
+    label: getProgramEventTypeLabel(value),
+    count: typeCounts[value],
+    color: typeColors[value] || "#6b7280",
+  }))
+  .concat(
+    tvcgCount > 0
+      ? [
+          {
+            value: "tvcg",
+            label: getProgramEventTypeLabel("tvcg"),
+            count: tvcgCount,
+            color: typeColors.tvcg,
+          },
+        ]
+      : [],
+  )
+  .concat(
+    awardCount > 0
+      ? [
+          {
+            value: "awards",
+            label: "Awards",
+            count: awardCount,
+            color: "#B7791F",
+          },
+        ]
+      : [],
+  )
+  .concat(
+    sessionRoles.length > 0
+      ? [
+          {
+            value: sessionRoleType,
+            label: "Chairs & Organizers",
+            count: sessionRoles.length,
+            color: "#616161",
+          },
+        ]
+      : [],
+  );
+---
+
+<section
+  class="program-papers grid gap-3"
+  data-local-storage-key-prefix={storageKeyPrefix}
+  data-bookmark-key={bookmarkKey}
+>
+  <ProgramHeader
+    title={`Papers`}
+    subtitleBefore={`Browse accepted ${lowerItemType}s by title, author, keyword, and session information.`}
+    subtitleAfter={""}
+    groupingNote="Note: bookmarks are stored locally in your browser and are not shared across devices."
+    typeOptions={typeOptions}
+    filterBarLabel="Paper type filters"
+    allLabel="All"
+  >
+    <div slot="extra-controls" class="papers-controls">
+      <div class="u-primary-controls flex w-full justify-between">
+        <label class="papers-control">
+          Search by
+          <div
+            id="papers-search-field"
+            class="papers-choice-group u-responsive-choice-group"
+            role="group"
+            aria-label="Search by"
+          >
+            <select
+              class="u-select u-mobile-choice-select"
+              data-choice-select
+              aria-label="Search by"
+            >
+              <option value="any">any</option>
+              <option value="title">title</option>
+              <option value="keyword">keyword</option>
+              <option value="author">author</option>
+              <option value="session">session</option>
+            </select>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint is-active"
+              data-choice-value="any"
+              aria-pressed="true"
+            >
+              any
+            </button>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint"
+              data-choice-value="title"
+              aria-pressed="false"
+            >
+              title
+            </button>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint"
+              data-choice-value="keyword"
+              aria-pressed="false"
+            >
+              keyword
+            </button>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint"
+              data-choice-value="author"
+              aria-pressed="false"
+            >
+              author
+            </button>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint"
+              data-choice-value="session"
+              aria-pressed="false"
+            >
+              session
+            </button>
+          </div>
+        </label>
+
+        <label class="papers-control">
+          Sort by
+          <div
+            id="papers-sort"
+            class="papers-choice-group u-responsive-choice-group"
+            role="group"
+            aria-label="Sort by"
+          >
+            <select
+              class="u-select u-mobile-choice-select"
+              data-choice-select
+              aria-label="Sort by"
+            >
+              <option value="title">title</option>
+              <option value="bookmarked">bookmarked first</option>
+              <option value="schedule">schedule</option>
+            </select>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint is-active"
+              data-choice-value="title"
+              aria-pressed="true"
+            >
+              title
+            </button>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint"
+              data-choice-value="bookmarked"
+              aria-pressed="false"
+            >
+              bookmarked first
+            </button>
+            <button
+              type="button"
+              class="papers-choice-button hover-response--tint"
+              data-choice-value="schedule"
+              aria-pressed="false"
+            >
+              schedule
+            </button>
+          </div>
+        </label>
+      </div>
+
+      <label class="papers-control">
+        Find
+        <div class="papers-search-shell">
+          <input
+            id="papers-search"
+            class="papers-search"
+            type="search"
+            placeholder={`Search ${lowerItemType}s`}
+            aria-label={`Search ${lowerItemType}s`}
+          />
+          <button
+            id="papers-search-clear"
+            class="papers-search-clear"
+            type="button"
+            aria-label="Clear search"
+          >
+            x
+          </button>
+        </div>
+      </label>
+    </div>
+  </ProgramHeader>
+
+  <div class="papers-grid" id="papers-grid">
+    {
+      papers.map((paper) => {
+        const isBookmarked = false;
+        const normalizedType = getPaperType(paper);
+        const colorType = paper.isTvcg ? "tvcg" : normalizedType;
+        const groupLabel = paper.sessionKey
+          ? "session"
+          : normalizedType === "workshop"
+            ? "workshop"
+            : "event";
+        const groupHref = paper.sessionKey
+          ? `${collectionPath}?session=${encodeURIComponent(paper.sessionKey)}&filter=session&search=${encodeURIComponent(paper.sessionLabel)}`
+          : paper.eventKey
+            ? `${collectionPath}?event=${encodeURIComponent(paper.eventKey)}&search=${encodeURIComponent(paper.eventLabel)}`
+            : undefined;
+        const people = paper.authorNames.map((authorName) => ({
+          name: authorName,
+          href: `${collectionPath}?filter=author&search=${encodeURIComponent(authorName)}`,
+        }));
+        const links = [
+          ...(paper.sessionUrl
+            ? [
+                {
+                  label: paper.scheduleLabel,
+                  href: paper.sessionUrl,
+                  icon: "schedule",
+                },
+              ]
+            : []),
+          // {
+          //   label: `Search for ${lowerItemType}s in this ${groupLabel}`,
+          //   href: groupHref,
+          //   icon: "search",
+          //   disabledTitle: groupHref
+          //     ? undefined
+          //     : `Session and event information are not available for this ${lowerItemType}`,
+          // },
+        ];
+
+        return (
+          <ProgramCard
+            data-program-card
+            data-paper-id={paper.id}
+            data-type={normalizedType}
+            data-tvcg={paper.isTvcg ? "true" : "false"}
+            data-awards={paper.award || paper.isAwardSession ? "true" : "false"}
+            data-title={paper.title.toLowerCase()}
+            data-authors={paper.authorNames.join(",").toLowerCase()}
+            data-keywords={paper.keywordsLabel.toLowerCase()}
+            data-session={paper.sessionLabel.toLowerCase()}
+            data-session-key={paper.sessionKey || ""}
+            data-event={paper.eventLabel.toLowerCase()}
+            data-event-key={paper.eventKey || ""}
+            data-award={paper.award?.toLowerCase() || ""}
+            data-start-ms={paper.startMs}
+            accentColor={typeColors[colorType] || "#f3f4f6"}
+            titleColor={typeTextColors[colorType] || "#111827"}
+            title={paper.title}
+            titleHref={paper.titleHref || `/program/${itemType}/${paper.id}`}
+            eyebrow={
+              paper.eyebrow ||
+              (paper.isTvcg
+                ? "TVCG Paper"
+                : paperTypeToNameMap[normalizedType] ||
+                  paper.presentationLabel)
+            }
+            award={paper.award}
+            peopleLabel={paper.titleHref ? "Speakers" : "Authors"}
+            people={people}
+            links={links}
+            bookmark={
+              paper.titleHref ? undefined : { bookmarked: isBookmarked }
+            }
+          />
+        );
+      })
+    }
+    {
+      sessionRoles.map((sessionRole) => (
+        <ProgramCard
+          data-program-card
+          data-session-role
+          data-type={sessionRoleType}
+          data-title={sessionRole.sessionTitle.toLowerCase()}
+          data-authors={sessionRole.people.join(",").toLowerCase()}
+          data-people={sessionRole.people.join("|").toLowerCase()}
+          data-session={sessionRole.sessionTitle.toLowerCase()}
+          data-start-ms={sessionRole.startMs}
+          accentColor={sessionRoleColor}
+          titleColor={sessionRoleTextColor}
+          title={sessionRole.sessionTitle}
+          titleHref={sessionRole.sessionUrl}
+          eyebrow={sessionRole.roleLabel}
+          peopleLabel={`${sessionRole.role}${sessionRole.people.length > 1 ? "s" : ""}`}
+          people={sessionRole.people.map((name) => ({
+            name,
+            href: `${collectionPath}?filter=author&search=${encodeURIComponent(name)}`,
+          }))}
+          links={[
+            {
+              label: `${sessionRole.scheduleLabel} - ${sessionRole.roomName}`,
+              href: sessionRole.sessionUrl,
+              icon: "schedule",
+            },
+          ]}
+        />
+      ))
+    }
+  </div>
+
+  <p id="papers-empty" class="papers-empty" hidden>
+    No papers match the current filters.
+  </p>
+</section>
+
+<script>
+  import {
+    createUrlStateHistory,
+    type UrlStateWriteOptions,
+  } from "../utils/urlStateHistory";
+
+  (() => {
+    const root = document.querySelector(".program-papers");
+    if (!root) return;
+
+    const bookmarkKey =
+      root.getAttribute("data-bookmark-key") || "program-papers-bookmarks";
+
+    const searchInput = root.querySelector<HTMLInputElement>("#papers-search");
+    const clearButton = root.querySelector<HTMLButtonElement>(
+      "#papers-search-clear",
+    );
+    const searchFieldControl = root.querySelector<HTMLElement>(
+      "#papers-search-field",
+    );
+    const sortControl = root.querySelector<HTMLElement>("#papers-sort");
+    const grid = root.querySelector<HTMLElement>("#papers-grid");
+    const emptyState = root.querySelector<HTMLElement>("#papers-empty");
+    const cards = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-program-card]"),
+    );
+    const typeFilterButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-type-filter]"),
+    );
+    let requestedSessionKey = "";
+    let requestedEventKey = "";
+    const validSearchFields = new Set([
+      "any",
+      "title",
+      "keyword",
+      "author",
+      "session",
+    ]);
+    const validTypeValues = new Set(
+      typeFilterButtons
+        .map((button) => button.getAttribute("data-type-filter") || "")
+        .filter(Boolean),
+    );
+    const validSortModes = new Set(["title", "bookmarked", "schedule"]);
+
+    const getStoredBookmarks = () => {
+      try {
+        const raw = localStorage.getItem(bookmarkKey);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const storeBookmarks = (bookmarks: string[]) => {
+      localStorage.setItem(bookmarkKey, JSON.stringify(bookmarks));
+    };
+
+    const bookmarks = new Set(getStoredBookmarks());
+
+
+    const getChoiceValue = (
+      container: HTMLElement | null,
+      fallback: string,
+    ): string => {
+      if (!container) return fallback;
+      const select = container.querySelector<HTMLSelectElement>(
+        "[data-choice-select]",
+      );
+      if (select) return select.value || fallback;
+      const activeButton = container.querySelector<HTMLButtonElement>(
+        ".papers-choice-button.is-active[data-choice-value]",
+      );
+      return activeButton?.dataset.choiceValue || fallback;
+    };
+
+    const setChoiceValue = (
+      container: HTMLElement | null,
+      value: string,
+    ): boolean => {
+      if (!container) return false;
+      const buttons = Array.from(
+        container.querySelectorAll<HTMLButtonElement>(
+          ".papers-choice-button[data-choice-value]",
+        ),
+      );
+      const select = container.querySelector<HTMLSelectElement>(
+        "[data-choice-select]",
+      );
+      let found = false;
+
+      for (const button of buttons) {
+        const isActive = button.dataset.choiceValue === value;
+        if (isActive) found = true;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      }
+
+      if (
+        select &&
+        Array.from(select.options).some((option) => option.value === value)
+      ) {
+        select.value = value;
+        found = true;
+      }
+
+      return found;
+    };
+
+    let activeTypeFilter = "all";
+
+    const restoreFromUrl = (params: URLSearchParams) => {
+      requestedSessionKey = params.get("session") || "";
+      requestedEventKey = params.get("event") || "";
+      if (searchInput) {
+        searchInput.value = params.get("search") || "";
+      }
+
+      const urlSearchField = params.get("filter") || "";
+      setChoiceValue(
+        searchFieldControl,
+        validSearchFields.has(urlSearchField) ? urlSearchField : "any",
+      );
+
+      const urlType = params.get("type") || "";
+      activeTypeFilter = validTypeValues.has(urlType) ? urlType : "all";
+
+      const urlSortMode = params.get("sort") || "";
+      setChoiceValue(
+        sortControl,
+        validSortModes.has(urlSortMode) ? urlSortMode : "title",
+      );
+    };
+
+    restoreFromUrl(new URLSearchParams(window.location.search));
+
+    const getSearchQuery = () =>
+      searchInput instanceof HTMLInputElement
+        ? searchInput.value.trim().toLowerCase()
+        : "";
+
+    const getSearchField = () => getChoiceValue(searchFieldControl, "any");
+
+    const getSortMode = () => getChoiceValue(sortControl, "title");
+
+    const getTypeFilter = () => activeTypeFilter;
+
+    const syncUrlParams = (options?: UrlStateWriteOptions) => {
+      const nextParams = new URLSearchParams(window.location.search);
+      const searchQuery = getSearchQuery();
+      const searchField = getSearchField();
+      const typeFilter = getTypeFilter();
+      const sortMode = getSortMode();
+
+      if (requestedSessionKey) {
+        nextParams.set("session", requestedSessionKey);
+      } else {
+        nextParams.delete("session");
+      }
+
+      if (requestedEventKey) {
+        nextParams.set("event", requestedEventKey);
+      } else {
+        nextParams.delete("event");
+      }
+
+      if (searchQuery) {
+        nextParams.set("search", searchQuery);
+      } else {
+        nextParams.delete("search");
+      }
+
+      if (searchField !== "any") {
+        nextParams.set("filter", searchField);
+      } else {
+        nextParams.delete("filter");
+      }
+
+      if (typeFilter !== "all") {
+        nextParams.set("type", typeFilter);
+      } else {
+        nextParams.delete("type");
+      }
+
+      if (sortMode !== "title") {
+        nextParams.set("sort", sortMode);
+      } else {
+        nextParams.delete("sort");
+      }
+
+      urlHistory.write(nextParams, options);
+    };
+
+    const getFieldValue = (card: HTMLElement) => {
+      const field = getSearchField();
+      if (field === "title") return card.dataset.title || "";
+      if (field === "keyword") return card.dataset.keywords || "";
+      if (field === "author") return card.dataset.authors || "";
+      if (field === "session") return card.dataset.session || "";
+      return [
+        card.dataset.title || "",
+        card.dataset.authors || "",
+        card.dataset.keywords || "",
+        card.dataset.session || "",
+        card.dataset.event || "",
+        card.dataset.award || "",
+      ].join(" ");
+    };
+
+    const refreshBookmarkState = () => {
+      for (const card of cards) {
+        const paperId = card.getAttribute("data-paper-id");
+        const toggle = card.querySelector<HTMLButtonElement>(
+          "[data-bookmark-toggle]",
+        );
+        const icon = card.querySelector<HTMLElement>("[data-bookmark-icon]");
+        if (!paperId || !toggle) continue;
+
+        const bookmarked = bookmarks.has(paperId);
+        toggle.setAttribute(
+          "aria-label",
+          bookmarked ? "Remove bookmark" : "Add bookmark",
+        );
+        toggle.setAttribute(
+          "title",
+          bookmarked ? "Remove bookmark" : "Add bookmark",
+        );
+        toggle.setAttribute("data-bookmarked", String(bookmarked));
+        toggle.classList.toggle("is-bookmarked", bookmarked);
+        if (icon) {
+          icon.textContent = bookmarked ? "bookmark" : "bookmark_border";
+        }
+      }
+    };
+
+    const refreshTypeFilterState = () => {
+      for (const button of typeFilterButtons) {
+        const buttonType = button.getAttribute("data-type-filter") || "all";
+        const isActive = buttonType === activeTypeFilter;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("is-active", isActive);
+      }
+    };
+
+    // Under "All", a chair/organizer card only appears when the search names
+    // that person; very short queries would match nearly everyone.
+    const matchesSessionRolePerson = (card: HTMLElement, query: string) => {
+      const field = getSearchField();
+      return (
+        (field === "any" || field === "author") &&
+        query.length >= 3 &&
+        (card.dataset.people || "")
+          .split("|")
+          .some((name) => name.includes(query))
+      );
+    };
+
+    const applyFilters = (options?: UrlStateWriteOptions) => {
+      const query = getSearchQuery();
+      const typeFilter = getTypeFilter();
+      const sortMode = getSortMode();
+      const visibleCards = cards.filter((card) => {
+        const haystack = getFieldValue(card).toLowerCase();
+        const cardType = card.dataset.type || "";
+        const typeMatch =
+          typeFilter === "all" ||
+          (typeFilter === "tvcg"
+            ? card.dataset.tvcg === "true"
+            : typeFilter === "awards"
+              ? card.dataset.awards === "true"
+              : cardType === typeFilter);
+        const sessionMatch =
+          requestedSessionKey.length === 0 ||
+          card.dataset.sessionKey === requestedSessionKey;
+        const eventMatch =
+          requestedEventKey.length === 0 ||
+          card.dataset.eventKey === requestedEventKey;
+        if (typeFilter === "all" && card.hasAttribute("data-session-role")) {
+          return (
+            matchesSessionRolePerson(card, query) && sessionMatch && eventMatch
+          );
+        }
+        return (
+          (query.length === 0 || haystack.includes(query)) &&
+          typeMatch &&
+          sessionMatch &&
+          eventMatch
+        );
+      });
+
+      visibleCards.sort((a, b) => {
+        // Keep a person's chair/organizer roles ahead of their papers.
+        const roleDelta =
+          Number(b.hasAttribute("data-session-role")) -
+          Number(a.hasAttribute("data-session-role"));
+        if (roleDelta !== 0) return roleDelta;
+
+        const aId = a.getAttribute("data-paper-id") || "";
+        const bId = b.getAttribute("data-paper-id") || "";
+
+        if (sortMode === "bookmarked") {
+          const delta = Number(bookmarks.has(bId)) - Number(bookmarks.has(aId));
+          if (delta !== 0) return delta;
+        }
+
+        if (sortMode === "schedule") {
+          const aStart = Number(
+            a.getAttribute("data-start-ms") || Number.MAX_SAFE_INTEGER,
+          );
+          const bStart = Number(
+            b.getAttribute("data-start-ms") || Number.MAX_SAFE_INTEGER,
+          );
+          if (aStart !== bStart) return aStart - bStart;
+        }
+
+        const aTitle = a.getAttribute("data-title") || "";
+        const bTitle = b.getAttribute("data-title") || "";
+        return aTitle.localeCompare(bTitle);
+      });
+
+      if (grid) {
+        for (const card of visibleCards) {
+          grid.appendChild(card);
+        }
+      }
+
+      for (const card of cards) {
+        card.hidden = !visibleCards.includes(card);
+      }
+
+      if (emptyState) {
+        emptyState.hidden = visibleCards.length > 0;
+      }
+
+      refreshBookmarkState();
+      syncUrlParams(options);
+    };
+
+    const urlHistory = createUrlStateHistory((params) => {
+      restoreFromUrl(params);
+      refreshTypeFilterState();
+      applyFilters();
+    });
+
+    const toggleBookmark = (paperId: string) => {
+      if (bookmarks.has(paperId)) {
+        bookmarks.delete(paperId);
+      } else {
+        bookmarks.add(paperId);
+      }
+      storeBookmarks(Array.from(bookmarks));
+      refreshBookmarkState();
+    };
+
+    for (const card of cards) {
+      const paperId = card.getAttribute("data-paper-id");
+      const toggle = card.querySelector<HTMLButtonElement>(
+        "[data-bookmark-toggle]",
+      );
+
+      if (toggle && paperId) {
+        toggle.addEventListener("click", () => toggleBookmark(paperId));
+      }
+    }
+
+    if (searchInput instanceof HTMLInputElement) {
+      searchInput.addEventListener("input", () => {
+        requestedSessionKey = "";
+        requestedEventKey = "";
+        applyFilters({ burst: "search" });
+      });
+    }
+
+    if (clearButton) {
+      clearButton.addEventListener("click", () => {
+        if (searchInput) {
+          searchInput.value = "";
+        }
+        requestedSessionKey = "";
+        requestedEventKey = "";
+        applyFilters();
+      });
+    }
+
+    if (searchFieldControl) {
+      const searchFieldButtons = Array.from(
+        searchFieldControl.querySelectorAll<HTMLButtonElement>(
+          ".papers-choice-button[data-choice-value]",
+        ),
+      );
+      for (const button of searchFieldButtons) {
+        button.addEventListener("click", () => {
+          const value = button.dataset.choiceValue;
+          const previousValue = getSearchField();
+          if (!value || !setChoiceValue(searchFieldControl, value)) return;
+          if (value !== previousValue) {
+            requestedSessionKey = "";
+            requestedEventKey = "";
+          }
+          applyFilters();
+        });
+      }
+      const searchFieldSelect =
+        searchFieldControl.querySelector<HTMLSelectElement>(
+          "[data-choice-select]",
+        );
+      searchFieldSelect?.addEventListener("change", () => {
+        if (!setChoiceValue(searchFieldControl, searchFieldSelect.value)) {
+          return;
+        }
+        requestedSessionKey = "";
+        requestedEventKey = "";
+        applyFilters();
+      });
+    }
+
+    for (const button of typeFilterButtons) {
+      button.addEventListener("click", () => {
+        activeTypeFilter = button.getAttribute("data-type-filter") || "all";
+        refreshTypeFilterState();
+        applyFilters();
+      });
+    }
+
+    if (sortControl) {
+      const sortButtons = Array.from(
+        sortControl.querySelectorAll<HTMLButtonElement>(
+          ".papers-choice-button[data-choice-value]",
+        ),
+      );
+      for (const button of sortButtons) {
+        button.addEventListener("click", () => {
+          const value = button.dataset.choiceValue;
+          if (!value || !setChoiceValue(sortControl, value)) return;
+          applyFilters();
+        });
+      }
+      const sortSelect = sortControl.querySelector<HTMLSelectElement>(
+        "[data-choice-select]",
+      );
+      sortSelect?.addEventListener("change", () => {
+        if (!setChoiceValue(sortControl, sortSelect.value)) return;
+        applyFilters();
+      });
+    }
+
+    refreshTypeFilterState();
+    refreshBookmarkState();
+    applyFilters({ replace: true });
+  })();
+</script>

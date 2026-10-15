@@ -7,7 +7,9 @@ sidebar: call-for-participation
 contact: workshops@ieeevis.org
 ---
 
-We solicit workshops related to all areas of visualization. They provide a forum for IEEE VIS for participants to advance cutting-edge research concerns, foster a community around emerging topics, engage experts in the field, disseminate work in progress, and promote new ideas. Workshops at IEEE VIS are free to attend by all registered attendees; “invitation only” workshops will not be approved.
+_Are you looking for the list of workshops? If so, [go here](/year/2026/info/program/workshops/)._
+
+We solicit proposals for in-person workshops related to all areas of visualization. They provide a forum for IEEE VIS for participants to advance cutting-edge research concerns, foster a community around emerging topics, engage experts in the field, disseminate work in progress, and promote new ideas. Workshops at IEEE VIS are free to attend by all registered attendees; “invitation only” workshops will not be approved.
 
 ## Important Dates
 
@@ -61,6 +63,7 @@ Workshop proposals should include:
 Because the number of workshop time slots is unusually limited for 2026, we will be planning for nearly all accepted workshops to be half-day events. That being said, we will still consider well-reasoned full-day requests. **Please note that the 2026 program is one day shorter than in previous years**, so full-day requests will face additional rigorous scrutiny to justify their addition to the 2026 program.
 
 **The proposal should not exceed four pages.** Please visit [VGTC website](https://tc.computer.org/vgtc/publications/conference) for formatting details and submit via [PCS](https://new.precisionconference.com/vgtc).
+We encourage the use of the LaTeX template which can be accessed and copied from [Overleaf](https://www.overleaf.com/latex/templates/2026-ieee-vis-workshop-proposal-your-workshop-title/pgmbkszvxnbm).
 
 ## Evaluation criteria
 
@@ -130,6 +133,10 @@ Some examples of common publication strategies are:
 ### Attendance
 
 At least one author for each paper must register and attend the conference in person or virtually. If you have exceptional circumstances and none of the authors can attend please contact the conference committee as soon as possible at [info@ieeevis.org](mailto:info@ieeevis.org).
+
+## Organizing Expectations
+
+All workshops should first and foremost be organized as _in-person events_ at the main conference venue. Hybrid organization is encouraged but is secondary to the in-person event organization. **At least two workshop organizers must be present at the in-person event.**
 
 ## Workshop Support
 

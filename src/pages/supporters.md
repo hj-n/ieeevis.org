@@ -1,7 +1,9 @@
 ---
 title: "Supporting the IEEE VIS Conference"
+description: "Support the IEEE VIS conference. Explore support and exhibition options to reach an international community of visualization researchers."
 layout: /src/layouts/PageLayout.astro
 contact: supporters@ieeevis.org
+active_nav: Contribute
 ---
 
 ![Frame 1vis23](https://user-images.githubusercontent.com/1230497/214549284-fcc9d692-8025-47d6-aaf7-980cf6b3fb45.png)
@@ -10,11 +12,11 @@ Whether you are recruiting new talent or showcasing key products and services, V
 
 VIS 2026 will be the year’s premier forum for advances in theory, methods, applications of data visualization, and visual analytics. The conference will convene an international community of researchers and practitioners from universities, government, and industry to exchange recent findings on the design and use of visualization tools.
 
-Through a six-day program of workshops and tutorials, exposition, panels, posters, keynotes, and research presentations! The conference convenes a global community of over 1000 researchers, students, and practitioners from universities, government, and industry with broad backgrounds in computing, design, mathematics, science, and more. An active recruitment venue for skilled candidates and potential research collaborations, VIS 2026 is where top university graduates and researchers gather. Support this community, and make your presence known at IEEE VIS 2026.
+Through a six-day program of workshops and tutorials, exposition, panels, posters, keynotes, and research presentations! The conference convenes a global community of over 1000 researchers, students, and practitioners from universities, government, and industry with broad backgrounds in computing, design, mathematics, science, and more. An active recruitment venue for skilled candidates and potential research collaborations, VIS 2026 is where top university graduates and researchers gather. Support this community, and make your presence known at IEEE VIS.
 
 # How to Support
 
-**>> [Browse our support options in the prospectus](/year/2026/assets/IEEE-VIS-2025-Supporters-Prospectus.pdf) <<**
+**>> [Browse our support options in the prospectus](/year/2026/assets/IEEE-VIS-2026-Supporters-Prospectus.pdf) <<**
 
 **>> Contact the IEEE VIS Supporters Chairs [<supporters@ieeevis.org>](mailto:supporters@ieeevis.org) <<**
 

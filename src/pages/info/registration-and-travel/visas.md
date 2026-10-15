@@ -1,35 +1,31 @@
 ---
 title: Visa Information
+description: "Visa guidance for IEEE VIS 2026 attendees traveling to Boston, Paris, or Tianjin, plus how to request an invitation letter."
 layout: /src/layouts/PageLayout.astro
 active_nav: "Attend"
 contact: "general_chair@ieeevis.org"
 ---
 
-Austria is part of the European Schengen area.
+## Obtaining a Visa
 
-## Who does not need a visa
+If you are planning to attend IEEE VIS 2026 and may need a visa, we encourage you to visit the pages below for information on visa procedures and applications. Please allow ample time for visa processing.
 
-Citizens of all countries of the European Union, Switzerland, Croatia, Israel, Japan, Australia, New Zealand, most of the countries of North and South America, and some other countries do not need a visa; only a valid passport is required to enter Austria. In case of doubt please contact the Austrian Consulate or Embassy well in advance before departure.
-
-Current member countries of the Schengen treaty are: Austria, Belgium, Bulgaria, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and Switzerland.
-
-## Who needs a visa
-
-Travellers requiring a visa can travel freely throughout the Schengen zone for three months with a Schengen visa issued by any Schengen country. Obtaining a visa entitling you to visit one Schengen country automatically entitles you to travel to and from all the other Schengen countries, too. Further information about visa regulations and Schengen visas can be found on the website of the Federal Ministry for European and International Affairs.
-
-## Authorities
-
-More information can be found:
-
-- At the website of the [Vienna Convention Bureau](https://meeting.vienna.info/en/why-vienna/further-information-vienna/visa-364566){:target="\_blank"}
-- At the website of the [Austrian Federal Ministry for European and International Affairs](https://www.bmeia.gv.at/en/travel-stay/entrance-and-residence-in-austria/){:target="\_blank"}
+- Boston, USA Attendees: [U.S. Visas website](https://travel.state.gov/content/travel/en/us-visas.html)
+- Paris, France Attendees: [France Visas website](https://france-visas.gouv.fr/en/accueil)
+- Tianjin, China Attendees:
+  - [China Online Visa Application (COVA)](https://consular.mfa.gov.cn/VISA/)
+  - [Chinese Visa Application Service Center](https://www.visaforchina.cn/VIE3_EN/qianzhengyewu)
 
 ## Visa Letter Requests
 
-A visa letter based on registration details will contain the following:
+Visa letter requests are handled through the [VIS 2026 registration system](/year/2026/info/registration-and-travel/conference-registration/) when you register for the conference. **You must be fully registered for the conference before any letter can be issued.**
 
+The generated letter will contain the following:
+
+- Your full name in the order of Given (First) Name, Family (Last) Name
+- Your mailing address
 - Registration confirmation number
-- Full name including Salutation (Mr., Ms., Mrs.) in the order of Salutation, Given (First) Name, Family (Last) Name
-- Email address, mailing address and affiliation (business or school)
+- Location of attendance (Boston, Paris, or Tianjin) and conference dates
+- Signatures from conference organizers
 
-If additional information (such as paper title and number, passport number, passport expiration date, date of birth, etc) is necessary, please let us know. If you have questions or additional requirement, you may contact [visa-letters@ieeevis.org](mailto:visa-letters@ieeevis.org).
+If additional information (such as paper title and number, passport number, passport expiration date, date of birth, etc.) is necessary, or if you have questions or additional requirement, you may contact [visa-letters@ieeevis.org](mailto:visa-letters@ieeevis.org).

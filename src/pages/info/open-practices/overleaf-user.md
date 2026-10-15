@@ -1,5 +1,6 @@
 ---
 title: Open Practices arXiv Guidance for Overleaf users
+description: "How Overleaf users can prepare a new arXiv submission for an IEEE VIS paper and update an existing arXiv record."
 layout: /src/layouts/PageLayout.astro
 active_nav: "Contribute"
 contact: open_practices@ieeevis.org
@@ -13,4 +14,4 @@ Alternatively, Overleaf provides you a zip file for streamlining your arXiv subm
 
 ## Updating an existing submission to arXiv
 
-When revising a submission, Overleaf does not offer a "_resubmit_" button. You will need to download a `zip` file and replace the files on arXiv that have changed. If you've never done this before, follow the [guidance here](updating-arxiv-post-publication).
+When revising a submission, Overleaf does not offer a "_resubmit_" button. You will need to download a `zip` file and replace the files on arXiv that have changed. If you've never done this before, follow the [guidance here](/year/2026/info/open-practices/updating-arxiv-post-publication).

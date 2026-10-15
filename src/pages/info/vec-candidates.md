@@ -1,7 +1,9 @@
 ---
 title: VEC Candidates - VIS 2026 Elections
+description: "Bios and campaign statements from the candidates standing for election to the IEEE VIS Executive Committee (VEC) in 2026."
 layout: /src/layouts/PageLayout.astro
 contact: elections@ieeevis.org
+active_nav: "Organization & History"
 ---
 
 # 2026 VIS Executive Committee (VEC) Candidates
@@ -13,7 +15,7 @@ The VEC provides oversight and planning for the VIS conference as described in t
 The 2026 candidates for the VEC are:
 
 - [Tim Dwyer](#tim-dwyer)
-- [Michelle Borkin](michelle-borkin)
+- [Michelle Borkin](#michelle-borkin)
 
 ## Tim Dwyer
 

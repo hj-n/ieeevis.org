@@ -122,6 +122,8 @@ p {
 
 .content table {
   @apply mb-4;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .content tr {
@@ -129,8 +131,19 @@ p {
 }
 
 .content td,
-th {
+.content th {
   @apply px-4 py-3;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 767px) {
+  .content table {
+    display: block;
+    overflow-x: auto;
+    table-layout: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
 }
 
 .content tbody tr:first-child {
@@ -140,6 +153,8 @@ th {
 
 table {
   @apply mb-8 border-b-2 border-solid border-primary text-left;
+  table-layout: fixed;
+  width: 100%;
 }
 
 thead {
@@ -182,4 +197,14 @@ thead + tbody {
 
 .text-measure--wide {
   max-width: 50em;
+}
+
+.visions-speaker-photo {
+  aspect-ratio: 1;
+  display: block;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  width: 24rem;
 }

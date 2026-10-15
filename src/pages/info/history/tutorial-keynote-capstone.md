@@ -1,7 +1,9 @@
 ---
 title: History
+description: "A compilation of more than 20 years of IEEE VIS tutorials, keynote speakers, and capstone talks."
 layout: /src/layouts/PageLayout.astro
 contact: archive@ieeevis.org
+active_nav: Organization & History
 ---
 
 # IEEE VIS history of tutorials and Keynotes and capstones

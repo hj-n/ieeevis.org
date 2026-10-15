@@ -31,6 +31,11 @@
   transition: transform .6s ease-in-out, -webkit-transform .6s ease-in-out; */
 }
 
+.carousel-item img {
+  height: 300px !important;
+  object-fit: cover;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carousel-item {
     transition: none;
@@ -128,7 +133,8 @@
   list-style: none;
 }
 
-.carousel-indicators li {
+.carousel-indicators li,
+.carousel-indicators button {
   box-sizing: content-box;
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
@@ -147,7 +153,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .carousel-indicators li {
+  .carousel-indicators li,
+  .carousel-indicators button {
     transition: none;
   }
 }

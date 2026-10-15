@@ -1,0 +1,215 @@
+---
+import ProgramViewSwitcher from "./ProgramViewSwitcher.astro";
+
+type DayOption = {
+  value: string;
+  label: string;
+};
+
+type TypeOption = {
+  value: string;
+  label: string;
+  count: number;
+  color?: string;
+};
+
+interface Props {
+  title: string;
+  subtitleBefore: string;
+  subtitleAfter?: string;
+  showTimezoneDescription?: boolean;
+  groupingNote?: string;
+  timezoneLabel?: string;
+  timezoneSelectId?: string;
+  dayLabel?: string;
+  daySelectId?: string;
+  searchLabel?: string;
+  searchInputId?: string;
+  searchPlaceholder?: string;
+  dayOptions?: DayOption[];
+  typeOptions?: TypeOption[];
+  allCount?: number;
+  allLabel?: string;
+  allDayLabel?: string;
+  filterBarLabel?: string;
+}
+
+const {
+  title,
+  subtitleBefore,
+  subtitleAfter = ".",
+  showTimezoneDescription = true,
+  groupingNote,
+  timezoneLabel,
+  timezoneSelectId,
+  dayLabel,
+  daySelectId,
+  searchLabel,
+  searchInputId,
+  searchPlaceholder,
+  dayOptions,
+  typeOptions,
+  allCount,
+  allLabel = "All",
+  allDayLabel = "All",
+  filterBarLabel = "Session type filters",
+} = Astro.props as Props;
+
+const showProgramViewSwitcher =
+  /\/program\/(?:calendar|sessions|papers)\/?$/.test(Astro.url.pathname);
+---
+
+<div class="u-toolbar">
+  <div class="u-toolbar__heading">
+    <div>
+      <p class="u-title">{title}</p>
+      <slot name="heading-extra" />
+    </div>
+
+    {showProgramViewSwitcher && <ProgramViewSwitcher />}
+  </div>
+
+  <div class="u-controls">
+    <div class="u-primary-controls flex w-full justify-between">
+      {
+        timezoneLabel && timezoneSelectId && (
+          <label class="u-control">
+            <span>{timezoneLabel}</span>
+            <div
+              id={timezoneSelectId}
+              class="u-choice-group u-responsive-choice-group"
+              role="group"
+              aria-label={timezoneLabel}
+            >
+              <select
+                class="u-select u-mobile-choice-select"
+                data-choice-select
+                aria-label={timezoneLabel}
+              >
+                <option value="conference">Conference (Boston)</option>
+                <option value="local">Local</option>
+                <option value="both">Both</option>
+              </select>
+              <button
+                type="button"
+                class="u-choice-button hover-response--tint is-active"
+                data-choice-value="conference"
+                aria-pressed="true"
+              >
+                Conference (Boston)
+              </button>
+              <button
+                type="button"
+                class="u-choice-button hover-response--tint"
+                data-choice-value="local"
+                aria-pressed="false"
+              >
+                Local
+              </button>
+              <button
+                type="button"
+                class="u-choice-button hover-response--tint"
+                data-choice-value="both"
+                aria-pressed="false"
+              >
+                Both
+              </button>
+            </div>
+          </label>
+        )
+      }
+
+      {
+        dayLabel && daySelectId && dayOptions && (
+          <label class="u-control">
+            <span>{dayLabel}</span>
+            <div
+              id={daySelectId}
+              class="u-choice-group u-responsive-choice-group"
+              role="group"
+              aria-label={dayLabel}
+            >
+              <select
+                class="u-select u-mobile-choice-select"
+                data-choice-select
+                aria-label={dayLabel}
+              >
+                <option value="all">{allDayLabel}</option>
+                {dayOptions.map((dayOption) => (
+                  <option value={dayOption.value}>{dayOption.label}</option>
+                ))}
+              </select>
+              <button
+                type="button"
+                class="u-choice-button hover-response--tint is-active"
+                data-choice-value="all"
+                aria-pressed="true"
+              >
+                {allDayLabel}
+              </button>
+              {dayOptions.map((dayOption) => (
+                <button
+                  type="button"
+                  class="u-choice-button hover-response--tint"
+                  data-choice-value={dayOption.value}
+                  aria-pressed="false"
+                >
+                  {dayOption.label}
+                </button>
+              ))}
+            </div>
+          </label>
+        )
+      }
+    </div>
+
+    {
+      searchLabel && searchInputId && searchPlaceholder && (
+        <label class="u-control mt-2">
+          {searchLabel}
+          <input
+            id={searchInputId}
+            class="u-search"
+            type="search"
+            placeholder={searchPlaceholder}
+            aria-label={searchLabel}
+          />
+        </label>
+      )
+    }
+
+    <slot name="extra-controls" />
+  </div>
+</div>
+
+{
+  typeOptions && typeOptions.length > 0 && (
+    <div class="u-filter-bar" role="toolbar" aria-label={filterBarLabel}>
+      <button
+        class="u-filter-pill hover-response--tint is-active"
+        type="button"
+        data-type-filter="all"
+        style="--pill-color: #374151"
+        aria-pressed="true"
+      >
+        <span>{allLabel}</span>
+        {allCount !== undefined && (
+          <span class="u-filter-count">{allCount}</span>
+        )}
+      </button>
+
+      {typeOptions.map((typeOption) => (
+        <button
+          class="u-filter-pill hover-response--tint"
+          type="button"
+          data-type-filter={typeOption.value}
+          style={`--pill-color: ${typeOption.color || "#6b7280"}`}
+          aria-pressed="false"
+        >
+          <span>{typeOption.label}</span>
+          <span class="u-filter-count">{typeOption.count}</span>
+        </button>
+      ))}
+    </div>
+  )
+}

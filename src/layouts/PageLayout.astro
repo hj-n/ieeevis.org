@@ -1,27 +1,55 @@
 ---
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar.astro";
 import DefaultLayout from "./DefaultLayout.astro";
 const { frontmatter } = Astro.props;
+const fullWidth = Boolean(frontmatter.full_width);
+const { pathname } = Astro.url;
+
+const isProgramPage = /year\/202\d\/program/.test(pathname);
+
+// Pages whose body is empty or entirely commented out (e.g. not-yet-published
+// info pages) shouldn't show up in search.
+const content = await Astro.slots.render("default");
+const hasContent =
+  content
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/<[^>]*>/g, "")
+    .trim().length > 0;
 ---
 
-<DefaultLayout page_info={frontmatter}>
-  <div class="section">
-    <div class="header">
-      <div class="container">
-        <h1 class="mb-0">{frontmatter.title}</h1>
+<DefaultLayout page_info={frontmatter} searchable={hasContent}>
+  <!-- section header -->
+  {
+    !isProgramPage && (
+      <div class="section">
+        <div class="header">
+          <div class="container">
+            <h1 class="mb-0">{frontmatter.title}</h1>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    )
+  }
 
-  <div class="container md:py-16 flex md:flex-row flex-col justify-between">
-    <article class="content md:w-3/5 w-full md:mt-0 mt-8 md:order-none order-2">
-      <slot />
-    </article>
+  {
+    fullWidth ? (
+      <div class="container md:py-16">
+        <article class="content w-full">
+          <Fragment set:html={content} />
+        </article>
+      </div>
+    ) : (
+      <div class="container md:py-16 flex md:flex-row flex-col justify-between">
+        <article class="content md:w-3/5 w-full md:mt-0 mt-8 md:order-0 order-2">
+          <Fragment set:html={content} />
+        </article>
 
-    {frontmatter.sidebar && <Sidebar sidebar_data_path={frontmatter.sidebar} />}
+        {frontmatter.sidebar && (
+          <Sidebar sidebar_data_path={frontmatter.sidebar} />
+        )}
 
-    {frontmatter.sidetoc && <p>TODO SIDETOC</p>}
-
-    <slot name="sidebar" />
-  </div>
+        <slot name="sidebar" />
+      </div>
+    )
+  }
 </DefaultLayout>

@@ -1,0 +1,458 @@
+/**
+ * One post: author, text, attachments, and a footer of counts.
+ *
+ * The author's name and handle only link out to bsky.app for posts made from a
+ * real account — guest comments all share one bridge account, so their
+ * pseudonym must not lead to that profile. The timestamp links to the post
+ * itself whenever it has a real URI, which a just-submitted comment does not
+ * yet have.
+ *
+ * The reader's own posts are marked with a "(me)" beside the name, whether they
+ * came through the guest bridge or from the reader's own Bluesky account.
+ * It earns its place on an anonymous comment above all: that byline reads the
+ * same `p-4821` on every anonymous post in the thread.
+ *
+ * Posts from an author of the paper under discussion carry an "Author" badge.
+ * Only a real Bluesky account can be matched to the handle in an author's
+ * profile, so guest comments never carry it.
+ */
+
+import { useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import Avatar from "./Avatar";
+import { EmbedCard, EmbedImages } from "./Embeds";
+import {
+  displayPost,
+  formatRelativeTime,
+  likeCountOf,
+  postUrl,
+  profileUrl,
+} from "./format";
+import { errorTextStyle } from "./styles";
+import type { ShapedPost } from "./types";
+
+/**
+ * Everything the per-post 🍩 like control needs, lifted to the discussion so
+ * the root and every reply read and update one shared like state.
+ *
+ * Absent, the replies show no like counts at all — an AppView thread carries no
+ * guest likes, and a wrong count is worse than none. The announcement's own chip
+ * is unaffected: it is a plain Bluesky count.
+ *
+ *  - `likedUris` — the posts the reader has liked, updated optimistically.
+ *  - `deltas` — transient count adjustments applied on top of the server total
+ *    while an optimistic toggle is in flight; cleared when fresh data arrives.
+ *  - `canLike` — whether this reader may toggle likes at all (a service thread
+ *    and a valid token).
+ *  - `onToggle` — like/unlike the given post.
+ */
+export interface PostLikeContext {
+  canLike: boolean;
+  likedUris: Set<string>;
+  deltas: Map<string, number>;
+  onToggle: (post: ShapedPost) => void;
+}
+
+/**
+ * Which posts are the reader's, lifted to the discussion so every post reads one
+ * shared answer.
+ *
+ *  - `ownUris` — their own guest comments still in the thread; the service
+ *    deletes those from the shared discuss account.
+ *  - `did` — the account the reader is logged in to Bluesky as, or null. Its
+ *    posts are theirs beyond doubt, and that account deletes them itself.
+ *  - `canRemove` — whether removing works at all here. A thread read straight
+ *    from the AppView with no Bluesky login is read-only, so posts are still
+ *    marked as the reader's but nothing is offered on them.
+ *  - `handle` — the Bluesky handle on their VIS profile, lowercased and without
+ *    the "@", or null. Matching on the handle rather than the DID is what the
+ *    site knows: a handle the reader has since given up could in principle be
+ *    held by someone else, and the only consequence is one wrongly marked post.
+ *  - `onRemove` — take the given comment down for good.
+ */
+export interface PostOwnContext {
+  ownUris: Set<string>;
+  did: string | null;
+  handle: string | null;
+  canRemove: boolean;
+  onRemove: (postUri: string) => void;
+}
+
+/**
+ * The per-post Reply control, lifted to the discussion so one composer is open
+ * at a time and posts through whichever writing mode the reader has.
+ *
+ *  - `canReplyTo` — whether this post can take a reply yet.
+ *  - `openUri` — the post whose composer is open, or null.
+ *  - `posting` — a reply is on its way, so its composer must stay open.
+ *  - `buttonId`, `composerId` — the element ids that tie each Reply button to
+ *    its composer, and that focus returns to when the composer closes.
+ *  - `onToggle` — open the composer under the given post, or close it.
+ *  - `renderComposer` — the composer for a reply to the given post.
+ */
+export interface PostReplyContext {
+  canReplyTo: (post: ShapedPost) => boolean;
+  openUri: string | null;
+  posting: boolean;
+  buttonId: (post: ShapedPost) => string;
+  composerId: (post: ShapedPost) => string;
+  onToggle: (post: ShapedPost) => void;
+  renderComposer: (post: ShapedPost) => ReactNode;
+}
+
+interface PostCardProps {
+  post: ShapedPost;
+  /** "root" is the post a thread hangs off; "reply" is everything below it. */
+  variant?: "root" | "reply";
+  like?: PostLikeContext;
+  /** Shared own-comment state; absent where the reader may not write. */
+  own?: PostOwnContext;
+  /** Shared reply state; absent where the reader may not write here. */
+  reply?: PostReplyContext;
+  /** Canonical Bluesky handles of the paper's authors. */
+  authorHandles?: ReadonlySet<string>;
+}
+
+const linkStyle = { color: "inherit", textDecoration: "none" } as const;
+
+/** The donut chip's shared shape; the button and the read-only count share it. */
+const likeChipStyle: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "0.3rem",
+  padding: "0.25rem 0.7rem",
+  borderRadius: "0.5rem",
+  border: "1px solid var(--color-gray-300)",
+  fontSize: "0.82rem",
+};
+
+/** "(me)", beside the name on the reader's own posts, in the heading orange. */
+const ownMarkerStyle: CSSProperties = {
+  marginLeft: "0.35rem",
+  color: "var(--color-primary)",
+  fontWeight: 600,
+  fontSize: "0.85rem",
+};
+
+/** "Author", beside the name on posts from an author of the paper. */
+const authorBadgeStyle: CSSProperties = {
+  marginLeft: "0.4rem",
+  padding: "0.05rem 0.45rem",
+  borderRadius: "0.5rem",
+  backgroundColor: "color-mix(in srgb, var(--color-accent) 12%, white)",
+  color: "var(--color-accent)",
+  fontWeight: 600,
+  fontSize: "0.75rem",
+  verticalAlign: "middle",
+};
+
+/** The chip shape again, as a plain button: the remove controls wear it. */
+const plainChipStyle: CSSProperties = {
+  ...likeChipStyle,
+  backgroundColor: "#fff",
+  color: "inherit",
+  cursor: "pointer",
+  fontFamily: "inherit",
+};
+
+/**
+ * The 🍩 like control for one post.
+ *
+ * The announcement root shows its Bluesky like count read-only — guests like
+ * the discussion's replies, not the announcement itself. Every reply, whether a
+ * guest comment or a native Bluesky reply, is an interactive donut once it is a
+ * real post and the reader may post; otherwise (a read-only viewer, a reader on
+ * Bluesky already, or a not-yet-read-back comment) it is a matching read-only
+ * chip, so the icon and count stay consistent without a control that does
+ * nothing.
+ */
+function LikeControl({
+  post,
+  isRoot,
+  like,
+}: {
+  post: ShapedPost;
+  isRoot: boolean;
+  like?: PostLikeContext;
+}) {
+  if (isRoot) {
+    // Bluesky's own like count for the announcement, read-only; we do not offer
+    // guest likes here and never sort by them.
+    return (
+      <span
+        aria-label={`${post.likeCount} likes on Bluesky`}
+        style={{
+          ...likeChipStyle,
+          backgroundColor: "transparent",
+          color: "var(--color-gray-600)",
+        }}
+        title="Likes on Bluesky"
+      >
+        🍩 {post.likeCount}
+      </span>
+    );
+  }
+
+  if (!like) {
+    return null;
+  }
+
+  // A just-posted comment not yet read back has a placeholder URI, so there is
+  // nothing real to like yet.
+  const isRealPost = post.uri.startsWith("at://");
+  const liked = like.likedUris.has(post.uri);
+  const count = likeCountOf(post) + (like.deltas.get(post.uri) ?? 0);
+  const interactive = like.canLike && isRealPost;
+
+  if (interactive) {
+    return (
+      <button
+        aria-label={`${liked ? "Unlike" : "Like"} this reply (${count})`}
+        aria-pressed={liked}
+        onClick={() => like.onToggle(post)}
+        style={{
+          ...likeChipStyle,
+          backgroundColor: liked
+            ? "color-mix(in srgb, var(--color-accent) 12%, white)"
+            : "#fff",
+          color: liked ? "var(--color-accent)" : "inherit",
+          cursor: "pointer",
+        }}
+        title={liked ? "Unlike" : "Like"}
+        type="button"
+      >
+        🍩 {count}
+      </button>
+    );
+  }
+
+  return (
+    <span
+      aria-label={`${count} likes`}
+      style={{
+        ...likeChipStyle,
+        backgroundColor: liked
+          ? "color-mix(in srgb, var(--color-accent) 12%, white)"
+          : "transparent",
+        color: liked ? "var(--color-accent)" : "var(--color-gray-600)",
+      }}
+      title="Likes"
+    >
+      🍩 {count}
+    </span>
+  );
+}
+
+/**
+ * "Remove", on the reader's own comments only.
+ *
+ * Removing deletes the post from Bluesky as well as taking it off this page,
+ * and nothing can put it back, so the button asks once before it acts. For a
+ * guest comment the confirmation also says what removal does not do: the
+ * conference keeps its own record of it. A post from the reader's own Bluesky
+ * account leaves no such record.
+ */
+function RemoveControl({
+  post,
+  own,
+  removable,
+}: {
+  post: ShapedPost;
+  own?: PostOwnContext;
+  removable: boolean;
+}) {
+  const [confirming, setConfirming] = useState(false);
+
+  if (!own?.canRemove || !removable) {
+    return null;
+  }
+
+  if (!confirming) {
+    return (
+      <button
+        onClick={() => setConfirming(true)}
+        style={plainChipStyle}
+        title="Remove this comment"
+        type="button"
+      >
+        Remove
+      </button>
+    );
+  }
+
+  return (
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: "0.4rem 0.5rem",
+      }}
+    >
+      <span>
+        {post.guest
+          ? "This deletes the comment from Bluesky as well and cannot be undone. Conference organizers keep a copy."
+          : "This deletes the post from your Bluesky account and cannot be undone."}
+      </span>
+      <button
+        onClick={() => {
+          setConfirming(false);
+          own.onRemove(post.uri);
+        }}
+        style={{
+          ...plainChipStyle,
+          borderColor: errorTextStyle.color,
+          color: errorTextStyle.color,
+        }}
+        type="button"
+      >
+        Remove
+      </button>
+      <button
+        onClick={() => setConfirming(false)}
+        style={plainChipStyle}
+        type="button"
+      >
+        Cancel
+      </button>
+    </span>
+  );
+}
+
+export default function PostCard({
+  post,
+  variant = "reply",
+  like,
+  own,
+  reply,
+  authorHandles,
+}: PostCardProps) {
+  const isRoot = variant === "root";
+  // Removable from here: a guest comment of theirs, or a post of the Bluesky
+  // account they are logged in to. A post matched by profile handle only is
+  // marked as theirs but is theirs to delete on Bluesky.
+  const removable =
+    own !== undefined &&
+    (own.ownUris.has(post.uri) ||
+      (own.did !== null && post.author?.did === own.did));
+  const isOwn =
+    removable ||
+    (own?.handle != null &&
+      (post.author?.handle ?? "").toLowerCase() === own.handle);
+  const isPaperAuthor =
+    !post.guest &&
+    authorHandles?.has((post.author?.handle ?? "").toLowerCase()) === true;
+  const { name, body } = displayPost(post);
+  const profile = post.guest ? null : profileUrl(post.author);
+  // Guest comments are real posts in the shared bridge repo, so their bsky.app
+  // permalink is valid too; only a not-yet-read-back placeholder URI has none.
+  const permalink = postUrl(post.uri);
+  const time = formatRelativeTime(post.createdAt);
+  const timeTitle = post.createdAt
+    ? new Date(post.createdAt).toLocaleString()
+    : undefined;
+  const reposts = post.repostCount || 0;
+  const replyable = !isRoot && reply !== undefined && reply.canReplyTo(post);
+  const replyOpen = replyable && reply.openUri === post.uri;
+  const hasFooter =
+    isRoot ||
+    replyable ||
+    Boolean(like) ||
+    (Boolean(own?.canRemove) && removable) ||
+    reposts > 0;
+
+  return (
+    <article style={{ padding: isRoot ? "0.9rem 0" : "0.6rem 0" }}>
+      <header style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+        <Avatar size={isRoot ? 40 : 36} src={post.author?.avatar ?? null} />
+        <div style={{ lineHeight: 1.2 }}>
+          {profile ? (
+            <a
+              href={profile}
+              rel="noopener noreferrer"
+              style={{ ...linkStyle, fontWeight: 600 }}
+              target="_blank"
+            >
+              {name}
+            </a>
+          ) : (
+            <span style={{ fontWeight: 600 }}>{name}</span>
+          )}
+          {isPaperAuthor && (
+            <span style={authorBadgeStyle} title="An author of this paper">
+              Author
+            </span>
+          )}
+          {isOwn && <span style={ownMarkerStyle}>(me)</span>}
+          <div style={{ fontSize: "0.85rem", color: "var(--color-gray-600)" }}>
+            {post.guest
+              ? "VIS attendee"
+              : `@${post.author?.handle || post.author?.did || "unknown"}`}
+            {time && " · "}
+            {time && permalink ? (
+              <a
+                href={permalink}
+                rel="noopener noreferrer"
+                style={{ color: "var(--color-accent)", textDecoration: "none" }}
+                target="_blank"
+                title={timeTitle}
+              >
+                {time}
+              </a>
+            ) : (
+              <span title={timeTitle}>{time}</span>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <p
+        style={{
+          margin: isRoot ? "0.5rem 0" : "0.4rem 0",
+          whiteSpace: "pre-wrap",
+        }}
+      >
+        {body}
+      </p>
+      <EmbedImages images={post.embedImages} />
+      <EmbedCard embed={post.embed} />
+
+      {hasFooter && (
+        <footer
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.75rem",
+            fontSize: "0.82rem",
+            color: "var(--color-gray-600)",
+            marginTop: isRoot ? "0.6rem" : "0.5rem",
+          }}
+        >
+          <LikeControl isRoot={isRoot} like={like} post={post} />
+          {replyable && (
+            <button
+              aria-controls={replyOpen ? reply.composerId(post) : undefined}
+              aria-expanded={replyOpen}
+              aria-label={`Reply to ${name}`}
+              disabled={reply.posting}
+              id={reply.buttonId(post)}
+              onClick={() => reply.onToggle(post)}
+              style={plainChipStyle}
+              type="button"
+            >
+              Reply
+            </button>
+          )}
+          {!isRoot && (
+            <RemoveControl own={own} post={post} removable={removable} />
+          )}
+          {!isRoot && reposts > 0 && (
+            <span>
+              {reposts} {reposts === 1 ? "repost" : "reposts"}
+            </span>
+          )}
+        </footer>
+      )}
+    </article>
+  );
+}

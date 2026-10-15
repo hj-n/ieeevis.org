@@ -1,11 +1,15 @@
 ---
 layout: /src/layouts/PageLayout.astro
 title: "VIS 2026 Poster Session"
+description: "The IEEE VIS 2026 Poster Session, where attendees can view posters, meet the authors, and network. Details to be announced."
+contact: social_events@ieeevis.org
 sidebar: social-events
 active_nav: "Program"
 ---
 
-The VIS 2026 **Poster Session** will take place at the convention center (Austria Center Vienna).
+Details TBD.
+
+<!-- The VIS 2026 **Poster Session** will take place at the convention center (Austria Center Vienna).
 
 ## Location
 
@@ -17,4 +21,4 @@ You can use the time to visit the posters, discuss with the authors, and network
 
 The poster session will take place:
 
-**Wednesday (Nov 5), 5:00pm - 6:00pm (CET), Foyer E**
+**Wednesday (Nov 5), 5:00pm - 6:00pm (CET), Foyer E** -->

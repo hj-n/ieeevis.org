@@ -1,341 +1,285 @@
 ---
 title: Week at a Glance
+description: "A preliminary week-at-a-glance overview of the IEEE VIS 2026 program, from the Doctoral Colloquium through the main conference sessions."
 layout: /src/layouts/PageLayout.astro
 contact: program@ieeevis.org
 sidebar: program
 active_nav: "Program"
 ---
 
-Below is a concise overview of the conference program.
-**Please note that changes may still be made at short notice.**
+<!-- Below is a concise overview of the conference program. Each session links to its page with the full list of presentations.
+You can also browse [all sessions](/year/2026/program/sessions) or view the [program calendar](/year/2026/program/calendar).
+**Please note, this is a preliminary schedule. The session times are subject to change and details will be added at a later date.**
+
+## Wednesday's Feature Events
+
+> **[Cluster: Practitioners’ Summit](https://cluster-practitioners-summit.github.io/)** is a dedicated practitioners’ summit for people who build, ship, and defend visualizations for a living. View the [full summit schedule below](#cluster-practitioners-summit).
+
+> **[VISions: Forward-Thinking Provocations](/year/2026/info/call-participation/visions/)**. A single-track event for forward thinking ideas to inspire the broad visualization community. See the [presenter and talk information below](#visions).
+
+<hr/>
+
+## Coffee Breaks and Lunch
+
+Coffee breaks are planned in the middle of the morning and afternoon sessions.
+
+- Morning coffee break: _9:30 AM - 10:00 AM (EST)_
+- Lunch break: _11:30 AM - 1:00 PM (EST)_
+- Afternoon coffee break: _2:30 PM - 3:00 PM (EST)_
 
 <hr/>
 
 ## Doctoral Colloquium
 
-<a>**Saturday, November 1, 2026**</a><br />
+<a>**Sunday, November 8, 2026**</a><br />
 
-_9:00 AM - 5:00 PM (CET)_<br />
 **Doctoral Colloquium** (Invite-only event)<br />
-The Doctoral Colloquium will take place at **TU Wien**, [Favoritenstraße 9-11, 1040 Wien](https://maps.app.goo.gl/2Rb58dYGnmcsLvsc7){:target= "\_blank"}.<br />
+Details to follow on time and location.<br />
 
 <hr/>
 
-## Workshop Schedule (Sunday/Monday)
+## Monday Schedule
 
-Sunday/Monday sessions will be **90 minutes**.
-We will have two parallel tracks morning and two in the afternoon.
-Coffee breaks are planned between the first/second and third/fourth block.
+Monday workshop sessions will be **3.5 hours** (including a 30-minute coffee break).
+We will have up to nine parallel tracks (morning and afternoon).
 
-- Morning coffee break: **10:30 AM - 11:00 AM (CET)**
-- Lunch break: **12:30 PM - 2:00 PM (CET)**
-- Afternoon coffee break: **3:30 PM - 4:00 PM (CET)**
+<a>**Monday, November 9, 2026**</a><br />
 
-<hr/>
+_8:00 AM - 11:30 AM (EST)_<br />
 
-<!-- ---------------------------------------------------------------------------------- -->
+**[Workshop]** [BELIV: Learning What's True, Doing What's Right (Part 1)](/year/2026/program/session/beliv-1)<br />
+**[Workshop]** [vis4climate: Building a Transdisciplinary Climate Vis Community](/year/2026/program/session/vis4climate-1)<br />
+**[Workshop]** [VISxGenAI: 2nd GenAI, Agents, and the Future of VIS](/year/2026/program/session/visxgenai-1)<br />
+**[Workshop]** [EduVis: 4th IEEE VIS Workshop on Visualization Education, Literacy, and Activities](/year/2026/program/session/eduvis-1)<br />
+**[Workshop]** [Considering Context: Approaches for Responsible Data Practices](/year/2026/program/session/considering-1)<br />
+**[Workshop]** [VisxVision: Workshop on Novel Directions in Vision Science and Visualization Research](/year/2026/program/session/visxvision-1)<br />
+**[Workshop]** [SciFi-VIS: Way Out There - How SciFi and Visualization Influence Each Other](/year/2026/program/session/scifivis-1)<br />
+**[Workshop]** [AccessViz: 3rd Workshop on Accessible Data Visualization](/year/2026/program/session/accessviz-1)<br />
 
-<a>**Sunday, November 2, 2026**</a><br />
+_1:00 PM - 4:30 PM (EST)_<br/>
 
-_9:00 AM - 12:30 PM (CET)_<br />
-
-**[Workshop]** 8th Workshop on Visualization for AI Explainability (VISxAI)<br />
-**[Workshop]** 16th Annual Workshop on Visual Analytics in Healthcare<br />
-**[Workshop]** Workshop on Topological Data Analysis and Visualization (TopoInVis)<br />
-**[Workshop]** 9th Workshop on Visualization for the Digital Humanities: VIS4DH ↔ DH4VIS<br />
-**[Workshop]** alt.VIS 2026<br />
-**[Tutorial]** Developing Immersive Visualizations and Interactions for the Web with Anu.js<br />
-**[Tutorial]** User-centered Evaluation in Visualization<br />
-**[Competition]** Bio+MedVis Challenge<br />
-
-_2:00 PM - 5:30 PM (CET)_<br/>
-
-**[Workshop]** 8th Workshop on Visualization for AI Explainability (VISxAI)<br />
-**[Workshop]** 16th Annual Workshop on Visual Analytics in Healthcare<br />
-**[Workshop]** Seventh Workshop on Visualization for Communication (VisComm)<br />
-**[Workshop]** Uncertainty Visualization: Unraveling Relationships of Uncertainty, AI, and Decision-Making<br />
-**[Workshop]** The 2nd MERCADO Workshop at IEEE VIS 2026: Multimodal Experiences for Remote Communication Around Data Online<br />
-**[Tutorial]** Live Collaborative Immersive Analytics Development with DashSpace<br />
-**[Tutorial]** Running Online User Studies with the reVISit Framework<br />
-**[Competition]** SciVis Contest<br />
+**[Workshop]** [BELIV: Learning What's True, Doing What's Right (Part 2)](/year/2026/program/session/beliv-2)<br />
+**[Workshop]** [TopoInVis Connect: Topology meets Artificial Intelligence](/year/2026/program/session/topoinvis-1)<br />
+**[Workshop]** [VISxAI: 9th Workshop on Visualization for AI Explainability](/year/2026/program/session/visxai-1)<br />
+**[Workshop]** [VAxAutoSci: Visual Analytics in the Age of Autonomous Scientific Discovery](/year/2026/program/session/vaxautosci-1)<br />
+**[Workshop]** [Uncertainty Visualization: How to Make it Interpretable, Integrable, and Accessible?](/year/2026/program/session/uncertainty-1)<br />
+**[Workshop]** [Grand Unified Grammar of Graphics (GUGOG)](/year/2026/program/session/w-grand-1)<br />
 
 <hr/>
 
-<!-- ---------------------------------------------------------------------------------- -->
+## Tuesday Schedule
 
-<a>**Monday, November 3, 2026**</a><br/>
-
-_9:00 AM - 12:30 PM (CET)_<br/>
-
-**[Workshop]** VISxGenAI: 1st Workshop on GenAI, Agents, and the Future of VIS<br />
-**[Workshop]** Envisioning a Research Agenda for Input Visualization<br />
-**[Workshop]** Human Factors in Immersive Analytics<br />
-**[Workshop]** EduVis: 3rd IEEE VIS Workshop on Visualization Education, Literacy, and Activities<br />
-**[Workshop]** LDAV 2026 - The 15th IEEE Workshop on Large Data Analysis & Visualization<br />
-**[Tutorial]** MLLM4Vis: Multimodal Large Language Models for Information Visualization<br />
-**[Tutorial]** Using Color Harmony and Gen AI Suggestion to Transform your Data Visualizations<br />
-**[Tutorial]** Hands-On TTK Tutorial: Solving Practical Problems in Small Groups<br />
-
-_2:00 PM - 5:30 PM (CET)_<br/>
-
-**[Workshop]** VISxGenAI: 1st Workshop on GenAI, Agents, and the Future of VIS<br />
-**[Workshop]** Envisioning a Research Agenda for Input Visualization<br />
-**[Workshop]** AccessViz: 2nd Workshop on Accessible Data Visualization<br />
-**[Workshop]** ECWIDNA: Engaging Critical Workforce In co-Design aNd Assessment<br />
-**[Tutorial]** Visualization for Explainable AI (XAI)<br />
-**[Tutorial]** Building Progressive Visual Analytics Systems with ProgressiVis<br />
-**[Tutorial]** Visualization Analysis and Design<br />
-**[Competition]** VAST Challenge<br />
-
-<hr/>
-
-## Conference Schedule (Tuesday - Friday)
-
-Tuesday to Friday sessions will be **75 minutes**.
-We will have two parallel tracks morning and two in the afternoon.
-Coffee breaks are planned between the first/second and third/fourth block.
-
-- Morning coffee break: **10:45 AM - 11:15 AM (CET)**
-- Lunch break: **12:30 PM - 2:00 PM (CET)**
-- Afternoon coffee break: **3:15 PM - 3:45 PM (CET)**
-
-<hr />
-
-<!-- ---------------------------------------------------------------------------------- -->
-
-### Tuesday, November 4, 2026
+<a>**Tuesday, November 10, 2026**</a><br />
 
 #### Morning
 
-_9:30 AM - 10:45 AM (CET)_<br/>
+_8:00 AM - 9:30 AM (EST)_<br />
+**[VIS Opening + Keynote](/year/2026/program/session/conf-keynote1)**: [Keynote by Kimberly K. Arcand](/year/2026/info/invited-speakers/keynote-speaker/) — America North / America Center / America South<br />
 
-- **Welcome**
-  - Welcome by the General Chairs
-  - VIS Opening
-- **Keynote**
-  - Hans-Christian Hege
-
-_11:15 AM - 12:30 PM (CET)_<br/>
-
-- **VGTC Awards**
-- **VIS Introduction**
-  - Paper and Short Paper Selection
-  - Poster Selection
-- **Best Short Papers**
-  - Best Short Paper 1 & 2
+_10:00 AM - 11:30 AM (EST)_<br />
+**[Full Papers]** [Talk to my agent](/year/2026/program/session/v-full-full8) — Essex Center<br />
+**[Full Papers]** [The more the merrier](/year/2026/program/session/v-full-full9) — America North<br />
+**[Full Papers]** [Please don't just stare at the picture](/year/2026/program/session/v-full-full16) — America Center<br />
+**[Short Papers]** [Form Follows Function](/year/2026/program/session/v-short-short1) — Essex North<br />
+**[Panel]** [Challenges and Opportunities for Evaluating AI-Assisted Generation of Visualizations](/year/2026/program/session/v-panels-panel8) — America South<br />
+**[Tutorial]** [Introduction to Quantum Computing for Visualization Researchers (Part 1)](/year/2026/program/session/quantum-1) — St. George (C+D)<br />
+**[Tutorial]** [From Decisions to Designs: A Hands-On Tutorial with the Typology of Decision-Making Tasks (Part 1)](/year/2026/program/session/decisions-1) — St. George (A+B)<br />
 
 #### Afternoon
 
-_2:00 PM - 3:15 PM (CET)_<br/>
+_1:00 PM - 2:30 PM (EST)_<br />
+**[Full Papers]** [Making things visual in science and engineering](/year/2026/program/session/v-full-full1) — Essex Center<br />
+**[Full Papers]** [How you show it makes a difference!](/year/2026/program/session/v-full-full7) — Essex North<br />
+**[Full Papers]** [Modern talking-visually](/year/2026/program/session/v-full-full14) — America Center<br />
+**[Full Papers]** [Can we have a (real) doctor, please?](/year/2026/program/session/v-full-full24) — America North<br />
+**[Panel]** [Molecules to Humankind: Challenges in Multiscale Visualization](/year/2026/program/session/v-panels-panel1) — America South<br />
+**[Tutorial]** [Introduction to Quantum Computing for Visualization Researchers (Part 2)](/year/2026/program/session/quantum-2) — St. George (C+D)<br />
+**[Tutorial]** [From Decisions to Designs: A Hands-On Tutorial with the Typology of Decision-Making Tasks (Part 2)](/year/2026/program/session/decisions-2) — St. George (A+B)<br />
 
-- **Best Poster Award**
-- **Best Papers**
-  - Best Papers 1 - 3
-
-_3:45 PM - 5:00 PM (CET)_<br/>
-
-- **Best Papers**
-  - Best Papers 4 & 5 (virtual presentation)
-- **Test-of-Time Awards**
-  - SciVis Test-of-Time Awards
-  - InfoVis Test-of-Time Awards
-  - VAST Test-of-Time Awards
+_3:00 PM - 4:30 PM (EST)_<br />
+**[Full Papers]** [Great, now you scattered the data everywhere!](/year/2026/program/session/v-full-full3) — Essex Center<br />
+**[Full Papers]** [Data really is everywhere](/year/2026/program/session/v-full-full5) — Essex North<br />
+**[Full Papers]** [Figuring out how to do good research](/year/2026/program/session/v-full-full6) — America Center<br />
+**[Full Papers]** [Let me through, I'm a scientist!](/year/2026/program/session/v-full-full28) — America North<br />
+**[Panel]** [Facts & All the Feels: Data Visualization Through the Affective Lens](/year/2026/program/session/v-panels-panel6) — America South<br />
 
 #### Evening
 
-_6:30 PM - 9:00 PM (CET)_<br/>
+_5:00 PM - 6:30 PM (EST)_<br />
+VGTC Awards<br />
+Test of Time Awards
 
-- **Welcome Reception** ([Natural History Museum](/year/2026/info/social-events/welcome-reception))
+_6:30 PM - 8:30 PM (EST)_<br />
+Welcome Reception<br />
+Posters Session
 
 <hr />
 
-<!-- ---------------------------------------------------------------------------------- -->
+## Wednesday Schedule
 
-### Wednesday, November 5, 2026
+<a>**Wednesday, November 11, 2026**</a>
 
 #### Morning
 
-_9:30 AM - 10:45 AM (CET)_<br/>
+_8:00 AM - 9:30 AM (EST)_<br />
+**[Full Papers]** [I feel tangled in a net](/year/2026/program/session/v-full-full10) — America Center<br />
+**[Full Papers]** [Let's dig into the data (from France)](/year/2026/program/session/v-full-full20) — America North<br />
+**[Short Papers]** [Can We Trust This Chart? (Asking for a Friend)](/year/2026/program/session/v-short-short8) — America South<br />
+**[VISAP]** [VISAP Paper 1](/year/2026/program/session/a-visap-visap1) — Essex South<br />
+**[Tutorial]** [Running Online User Studies with the reVISit Framework (Part 1)](/year/2026/program/session/revisit-1) — Essex North<br />
+**[Tutorial]** [Custom widgets for Python notebooks with anywidget and marimo (Part 1)](/year/2026/program/session/marimo-1) — Essex Center<br />
+**[Cluster]** [The Practitioner's Summit (Part 1)](https://cluster-practitioners-summit.github.io/) — St. George (C+D) / St. George (A+B)<br />
 
-- **Full Paper Sessions**
-  - VA for AI
-  - Multivariate and Time
-  - Dastardly Dashboards (+ 1 Short Paper)
-  - Maps & Spatial Vis
-  - Encoding and Comprehension _(Virtual Session)_
-- **Panel**
-  - VisAble: Who do we exclude by current visualization practices and how do we change that?
-
-_11:15 AM - 12:30 PM (CET)_<br/>
-
-- **Full Paper Sessions**
-  - Fields, Fields, Fields
-  - Of Trees and Treemaps (+ 1 Short Paper)
-- **Short Paper Sessions**
-  - Visualization with/for/in AI
-  - Visualization for Science
-  - Charts, Diagrams & Plots
-  - Viz for AI & AI for Viz _(Virtual Session)_
-- **Panel**
-  - TALK, TRY, TELL: Challenges and Opportunities for Theory-Grounded Data Visualization in Extended Reality
-
-#### Lunch
-
-_1:00 PM - 2:00 PM (CET)_<br/>
-
-- **Townhall Meeting**
+_10:00 AM - 11:30 AM (EST)_<br />
+**[Full Papers]** [What does it mean to live, anyway?](/year/2026/program/session/v-full-full23) — America Center<br />
+**[Short Papers]** [Data, Meet Human: Vis That Cares](/year/2026/program/session/v-short-short9) — America North<br />
+**[Panel]** [Beyond the Last Mile: What Should Visualization Own in the Age of Data Systems and AI Agents?](/year/2026/program/session/v-panels-panel7) — America South<br />
+**[VISAP]** [VISAP Paper 2](/year/2026/program/session/a-visap-visap2) — Essex South<br />
+**[Tutorial]** [Running Online User Studies with the reVISit Framework (Part 2)](/year/2026/program/session/revisit-2) — Essex North<br />
+**[Tutorial]** [Custom widgets for Python notebooks with anywidget and marimo (Part 2)](/year/2026/program/session/marimo-2) — Essex Center<br />
+**[Cluster]** [The Practitioner's Summit (Part 2)](https://cluster-practitioners-summit.github.io/) — St. George (C+D) / St. George (A+B)<br />
 
 #### Afternoon
 
-_2:00 PM - 3:15 PM (CET)_<br/>
+_1:00 PM - 2:30 PM (EST)_<br />
+**[Full Papers]** [Let's figure out how things work behind the scenes](/year/2026/program/session/v-full-full2) — America North<br />
+**[Full Papers]** [Did you see that? Are you sure?](/year/2026/program/session/v-full-full26) — Essex Center<br />
+**[Short Papers]** [Me, Myself, and AI](/year/2026/program/session/v-short-short3) — America Center<br />
+**[Short Papers]** [Connecting the Dots](/year/2026/program/session/v-short-short7) — Essex North<br />
+**[Panel]** [Industry Meets Academia: Data and Visual Analytics in the Agentic Era](/year/2026/program/session/v-panels-panel3) — America South<br />
+**[VISAP]** [VISAP Pictorial](/year/2026/program/session/a-visap-visap3) — Essex South<br />
+**[Cluster]** [The Practitioner's Summit (Part 3)](https://cluster-practitioners-summit.github.io/) — St. George (C+D) / St. George (A+B)<br />
 
-- **Full Paper Sessions**
-  - The VIS in GenAI
-  - Embeddings & Metrics
-  - Volume
-  - Ordering and Layout
-- **Short Paper Sessions**
-  - Explorations in Abstract and Physical Spaces
-- **Vis In Practice**
-  - Research <> Practice Engagement Session
-- **Panel**
-  - From Cognition to Context: A Conversation about Technical Approaches, Social Values, and Tradeoffs in Visualization
+_3:00 PM - 4:30 PM (EST)_<br />
+**[VISions](/year/2026/program/session/conf-visions1)** — America North / America Center / America South ([details below](#visions))<br />
 
-_3:45 PM - 5:00 PM (CET)_<br/>
+<a id="cluster-practitioners-summit"></a>
 
-- **Full Paper Sessions**
-  - Agentic Visualization and Intelligent Systems
-  - Dimensionality Reduction and Parameter Space Analysis
-  - Flow and Topology
-  - Authoring and Design
-  - Graphs and Networks
-- **Panel**
-  - What Does Psychology Really Mean to Visualization Research? Towards PsychXVis and VisXPsych
+### Cluster: Practitioners’ Summit (Wednesday)
+
+**[Cluster Event Website](https://cluster-practitioners-summit.github.io/)**<br />
+
+A dedicated gathering for people who build, ship, and defend visualizations for a living, held in St. George (C+D) and St. George (A+B).
+
+_8:00 AM - 9:30 AM (EST)_ · [Part 1](https://cluster-practitioners-summit.github.io/)<br/>
+**Welcome & Short Keynote**<br />
+**[Live PolicyViz Podcast](https://cluster-practitioners-summit.github.io/#policyviz)** with Jon Schwabish<br />
+
+_9:30 AM - 10:00 AM (EST)_<br/>
+**Coffee Break** & [Anonymous Vis Feedback](https://cluster-practitioners-summit.github.io/#visexploration)<br />
+
+_10:00 AM - 11:30 AM (EST)_ · [Part 2](https://cluster-practitioners-summit.github.io/)<br/>
+**Live PolicyViz Podcast Q & A**<br />
+**[Practitioner Lightning Talks](https://cluster-practitioners-summit.github.io/#lightningtalks)**<br />
+
+_11:30 AM - 1:00 PM (EST)_<br/>
+**Catered Lunch** & [Anonymous Vis Feedback](https://cluster-practitioners-summit.github.io/#visexploration)<br />
+
+_1:00 PM - 2:30 PM (EST)_ · [Part 3](https://cluster-practitioners-summit.github.io/)<br/>
+**[FAQ Freelancing Info Session](https://cluster-practitioners-summit.github.io/#freelancefaq)**<br />
+**Closing Notes**<br />
+
+<a id="visions"></a>
+
+### VISions (Wednesday)
+
+A venue for forward-thinking ideas to inspire the broad visualization community (including both researchers and practitioners).
+
+_3:00 PM - 4:30 PM (EST)_ · [VISions session](/year/2026/program/session/conf-visions1)<br/>
+**[Will Visualization Help Humans Act on Data or Help AI Act on Humans?](/year/2026/info/invited-speakers/visions/#zhu-tian-chen-will-visualization-help-humans-act-on-data-or-help-ai-act-on-humans)** by Zhu-Tian Chen<br />
+**[Ways of Thinking, Ways of Doing, and the Future of Visualization Research](/year/2026/info/invited-speakers/visions/#ana-crisan-ways-of-thinking-ways-of-doing-and-the-future-of-visualization-research)** by Ana Crisan<br />
 
 #### Evening
 
-_5:00 PM - 6:00 PM (CET)_<br/>
+_6:00 PM - 10:00 PM (EST)_<br/>
+**Banquet** hosted at the [MIT Museum, Cambridge](https://mitmuseum.mit.edu/)<br />
 
-- **Poster Session** ([Austria Center Vienna](/year/2026/info/social-events/poster-session))
-
-_6:00 PM - 9:00 PM (CET)_<br/>
-
-- **Conference Dinner** ([Austria Center Vienna](/year/2026/info/social-events/conference-dinner))
+_7:00 PM - 10:00 PM (EST)_<br/>
+**[VIS Arts Program (VISAP)](https://visap.net/2026/)** hosted at the [MET Warehouse, MIT, Cambridge](https://betterworld.mit.edu/met-warehouse/)<br />
 
 <hr />
 
-<!-- ---------------------------------------------------------------------------------- -->
+## Thursday Schedule
 
-### Thursday, November 6, 2026
+<a>**Thursday, November 12, 2026**</a><br />
 
 #### Morning
 
-_9:30 AM - 10:45 AM (CET)_<br/>
+_8:00 AM - 9:30 AM (EST)_<br />
+**[Full Papers]** [Story time](/year/2026/program/session/v-full-full22) — America North<br />
+**[Full Papers]** [How can I do this myself?](/year/2026/program/session/v-full-full18) — America Center<br />
+**[Full Papers]** [I'm not so certain](/year/2026/program/session/v-full-full12) — Essex North<br />
+**[Short Papers]** [Is the Model Even Thinking?](/year/2026/program/session/v-short-short5) — America South<br />
+**[CG&A]** [Applications, Domain Science & Data Representation](/year/2026/program/session/v-cga-cga2) — Essex Center<br />
+**[Tutorial]** [Lossy Compression for Scientific Data: Principles, Tools, and Implications for Visualization (Part 1)](/year/2026/program/session/lossy-compression-1) — St. George (A+B)<br />
 
-- **Full Paper Sessions**
-  - Explanation, Exploration, and Model Configuration
-  - The Color and the Shape
-- **Short Paper Sessions**
-  - Workflows & Infrastructure
-  - Visualization in-the-wild
-  - Multi-modal and Spatial _(Virtual Session)_
-- **Vis Arts Program**
-  - VISAP Papers
-- **Panel**
-  - IEEE VIS Reviewing - On a Path to Self-Destruction?
+_10:00 AM - 11:30 AM (EST)_<br />
+**[Full Papers]** [Time after time](/year/2026/program/session/v-full-full30) — America North<br />
+**[Full Papers]** [My followers need to know about this!](/year/2026/program/session/v-full-full21) — America Center<br />
+**[Full Papers]** [That's way too many dimensions for me](/year/2026/program/session/v-full-full11) — Essex North<br />
+**[Panel]** [Friction in Visualization: When Should We Slow People Down?](/year/2026/program/session/v-panels-panel4) — America South<br />
+**[Tutorial]** [Lossy Compression for Scientific Data: Principles, Tools, and Implications for Visualization (Part 2)](/year/2026/program/session/lossy-compression-2) — St. George (A+B)<br />
 
-_11:15 AM - 12:30 PM (CET)_<br/>
-
-- **Full Paper Sessions**
-  - From Data to Meaning
-  - Games, Sports, and Music (+ 1 Short Paper)
-  - Vis & Language
-  - Volumes & 3D _(Virtual Session)_
-- **TVCG/CG&A Paper Sessions**
-  - Visual Analytics Methods, Tools, and Infrastructure
-- **Vis Arts Program**
-  - VISAP Pictoral
-- **Panel**
-  - Industry Meets Research: Future Needs and Opportunities for Visual Analytics in Industrial Manufacturing
-
-#### Lunch
-
-_1:00 PM - 2:00 PM (CET)_<br/>
-
-- **VIS 2026 OC Kickoff Meeting (OC Only)**
+_11:30 AM - 12:30 PM (EST)_<br />
+**Town Hall Meeting**<br />
 
 #### Afternoon
 
-_2:00 PM - 3:15 PM (CET)_<br/>
+_1:00 PM - 2:30 PM (EST)_<br />
+**[Full Papers]** [Turn up the volume(s)!](/year/2026/program/session/v-full-full4) — America North<br />
+**[Full Papers]** [Places and spaces](/year/2026/program/session/v-full-full17) — America Center<br />
+**[Full Papers]** [From design spaces to visual design](/year/2026/program/session/v-full-full15) — Essex North<br />
+**[Short Papers]** [Tools of the Trade](/year/2026/program/session/v-short-short4) — Essex Center<br />
+**[Panel]** [Visualization as a Foundational Act of Placemaking: Future Places and Alien Worlds](/year/2026/program/session/v-panels-panel2) — America South<br />
+**[Tutorial]** [Visualization Analysis and Design (Part 1)](/year/2026/program/session/vis-analysis-design-1) — St. George (A+B)<br />
 
-- **Full Paper Sessions**
-  - Analysts, Assemble!
-  - Algorithms and Workflows
-  - Transportation, Buildings, and Urban Vis
-  - Immersive & Ubiquitous Analytics
-  - Perception
-  - Rescheduled Papers (+ 1 Short Paper)
-- **Panel**
-  - "Words Divide, Pictures Unite" - Revisiting Otto Neurath's ISOTYPE at 100
+_3:00 PM - 4:30 PM (EST)_<br />
+**[Full Papers]** [Kids these days don't learn anything anymore, let's fix that!](/year/2026/program/session/v-full-full27) — America North<br />
+**[Full Papers]** [That's way too big!](/year/2026/program/session/v-full-full29) — America Center<br />
+**[Short Papers]** [Lost in Dimensions](/year/2026/program/session/v-short-short6) — Essex North<br />
+**[CG&A]** [Human-Centered Design, Accessibility & Interaction](/year/2026/program/session/v-cga-cga1) — Essex Center<br />
+**[Panel]** [From Correlation to Causality: Future Directions in Visual Causal Inference](/year/2026/program/session/v-panels-panel5) — America South<br />
+**[Tutorial]** [Visualization Analysis and Design (Part 2)](/year/2026/program/session/vis-analysis-design-2) — St. George (A+B)<br />
 
-_3:45 PM - 5:00 PM (CET)_<br/>
-
-- **Full Paper Sessions**
-  - Interaction, Provenance, and Collaboration
-  - Analytics & Reasoning
-  - Biomedical Visualization
-- **Short Paper Sessions**
-  - Immersive Visualization and Extended Reality
-  - Perception & Semantics
-- **Vis In Practice**
-  - Industry Meetup: How to make money with visualization?
-
-#### Evening
-
-_6:00 PM - 9:00 PM (CET)_<br/>
-
-- **VISAP Exhibition** ([University of Applied Arts (Atrium)](https://maps.app.goo.gl/cc37KProFbbk79bj7){:target= "\_blank"})
-
-_7:00 PM (CET)_<br/>
-
-- **OC Dinner** - invitation only ([Melker Stiftskeller](/year/2026/info/social-events/oc-dinner))
+_4:30 PM - 5:30 PM (EST)_<br />
+**VIS 2027 Kickoff**<br />
 
 <hr />
 
-<!-- ---------------------------------------------------------------------------------- -->
+## Friday Schedule
 
-### Friday, November 7, 2026
+<a>**Friday, November 13, 2026**</a><br />
 
 #### Morning
 
-_9:30 AM - 10:45 AM (CET)_<br/>
+_8:00 AM - 9:30 AM (EST)_<br />
+**[Full Papers]** [This feels amazingly real!](/year/2026/program/session/v-full-full25) — America North<br />
+**[Full Papers]** [Let's dig into the data (from China)](/year/2026/program/session/v-full-full19) — America Center<br />
+**[Full Papers]** [I don't trust you, explain yourself!](/year/2026/program/session/v-full-full13) — Essex North<br />
+**[Short Papers]** [Big Data, Bigger Physics](/year/2026/program/session/v-short-short2) — America South<br />
 
-- **Full Paper Sessions**
-  - Trust No One
-  - Stories and the Journalists Who Tell Them
-  - Models, Methods, and Typologies
-  - Visualization Literacy
-- **TVCG/CG&A Paper Session**
-  - Reflections and Looking Forward
-
-_11:15 AM - 12:30 PM (CET)_<br/>
-
-- **Capstone**
-  - Theo Deutinger
-- **Closing**
-  - Conference closing
-  - Outlook
+_10:00 AM - 11:30 AM (EST)_<br />
+**[Capstone](/year/2026/program/session/conf-capstone1)**: [Capstone by Nils Gehlenborg](/year/2026/info/invited-speakers/capstone-speaker/) and VIS Closing — America North / America Center / America South<br />
 
 <hr />
 
+## Paper Sessions, Panels, and Tutorials (Tuesday - Friday)
+
+Sessions are **90 minutes**, with up to six parallel tracks in the morning and in the afternoon.
+Full details for every session are on the [sessions page](/year/2026/program/sessions) and the [program calendar](/year/2026/program/calendar).
+
+- Morning coffee break: _9:30 AM - 10:00 AM (EST)_
+- Lunch break: _11:30 AM - 1:00 PM (EST)_
+- Afternoon coffee break: _2:30 PM - 3:00 PM (EST)_
+
+<hr /> -->
+
 <!-- ---------------------------------------------------------------------------------- -->
 
-### Program Co-Chairs
+### Program Chairs
 
 - Tushar Athawale, _Oak Ridge National Laboratory_
-- Michelle Dowling, _Pacific Northwest National Laboratory_
-- Michael Oppermann, _AIT Austrian Institute of Technology_
 - Alfie Abdul Rahman, _King's College London_
-- Gautam Chaudhary, _Alcon_
+- John Thompson, _Autodesk Research_
 
 _Email: [program@ieeevis.org](mailto:program@ieeevis.org)_
